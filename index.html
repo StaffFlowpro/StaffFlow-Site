@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StaffFlow — Timesheets in. Invoices out. Same day.</title>
+<meta name="description" content="StaffFlow turns consultant timesheets into QuickBooks invoices automatically, so IT staffing firms bill the day hours arrive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12161C; --paper:#FBFAF7; --rule:#E2DFD8; --muted:#6B6E74;
+  --paid:#2C6E52; --stub:#F3F1EC;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Newsreader",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+  font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--paid);outline-offset:3px;border-radius:2px}
+
+header{padding:28px 0;border-bottom:1px solid var(--rule)}
+.brand{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none}
+.brand span{color:var(--paid)}
+
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;
+  padding:88px 0 84px;border-bottom:1px solid var(--rule)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(38px,5.2vw,62px);
+  line-height:1.02;letter-spacing:-.035em;margin:0 0 22px}
+h1 em{font-style:normal;color:var(--paid)}
+.lede{font-size:20px;color:#33383F;margin:0 0 12px;max-width:31em}
+.for{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);margin-top:26px}
+
+/* signature: an invoice stub, torn along a perforation */
+.stub{background:var(--stub);border:1px solid var(--rule);border-radius:3px;
+  padding:26px 26px 0;font-family:var(--mono);position:relative}
+.stub-row{display:flex;justify-content:space-between;gap:16px;
+  font-size:12.5px;letter-spacing:.04em;color:var(--muted);padding:9px 0}
+.stub-row b{color:var(--ink);font-weight:500;letter-spacing:0}
+.perf{border:0;border-top:1px dashed #C9C4B9;margin:14px -26px;height:0}
+.days{display:flex;align-items:baseline;justify-content:space-between;padding:4px 0 26px}
+.days-l{font-size:12.5px;letter-spacing:.04em;color:var(--muted);text-transform:uppercase}
+.days-n{font-family:var(--display);font-weight:700;font-size:72px;line-height:.8;
+  letter-spacing:-.04em;color:var(--paid)}
+
+section{padding:76px 0;border-bottom:1px solid var(--rule)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,3vw,34px);
+  letter-spacing:-.025em;margin:0 0 34px;line-height:1.12}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 14px}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.step{padding:0 22px 0 0;border-left:1px solid var(--rule);padding-left:20px}
+.step:first-child{border-left:0;padding-left:0}
+.step-n{font-family:var(--mono);font-size:12px;color:var(--paid);letter-spacing:.08em}
+.step h3{font-family:var(--display);font-weight:500;font-size:17.5px;letter-spacing:-.01em;margin:10px 0 7px}
+.step p{font-size:15.5px;color:#494E55;margin:0;line-height:1.55}
+
+.privacy-block{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.privacy-block p{margin:0 0 16px;color:#33383F}
+.privacy-block p:last-child{margin-bottom:0}
+.note{font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--muted);
+  background:var(--stub);border:1px solid var(--rule);border-radius:3px;padding:18px 20px}
+
+.contact{padding:76px 0}
+.mail{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.4vw,38px);
+  letter-spacing:-.03em;text-decoration:none;border-bottom:2px solid var(--rule);padding-bottom:2px}
+.mail:hover{border-color:var(--paid);color:var(--paid)}
+
+footer{border-top:1px solid var(--rule);padding:30px 0 44px;
+  display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+footer a{text-decoration:none;margin-left:22px}
+footer a:hover{color:var(--ink)}
+
+@media (max-width:840px){
+  .hero{grid-template-columns:1fr;gap:44px;padding:60px 0}
+  .steps{grid-template-columns:1fr 1fr;gap:30px 0}
+  .step{border-left:0;padding-left:0}
+  .privacy-block{grid-template-columns:1fr;gap:28px}
+}
+@media (max-width:520px){ .steps{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:no-preference){
+  .hero>*{opacity:0;transform:translateY(10px);animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero>*:nth-child(2){animation-delay:.12s}
+  @keyframes rise{to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap"><a class="brand" href="/">Staff<span>Flow</span></a></div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>Timesheets in.<br>Invoices out.<br><em>Same day.</em></h1>
+      <p class="lede">StaffFlow turns consultant timesheets into QuickBooks invoices automatically — so you bill the day hours arrive, not two weeks later.</p>
+      <p class="for">For IT staffing firms running on QuickBooks</p>
+    </div>
+
+    <div class="stub" aria-label="Example invoice stub showing a timesheet received and invoiced on the same day">
+      <div class="stub-row"><span>TIMESHEET RECEIVED</span><b>Mon 06 Jul</b></div>
+      <div class="stub-row"><span>HOURS EXTRACTED</span><b>40.00</b></div>
+      <div class="stub-row"><span>INVOICE CREATED</span><b>Mon 06 Jul</b></div>
+      <hr class="perf">
+      <div class="days">
+        <span class="days-l">Days to bill</span>
+        <span class="days-n">0</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Four steps, none of them yours.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">01</div>
+        <h3>A timesheet arrives</h3>
+        <p>Your consultant emails it, as they always have. Nothing changes for them.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <h3>Hours are read</h3>
+        <p>Any format — grid, PDF, spreadsheet, or hours typed in the email body.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <h3>Numbers are checked</h3>
+        <p>Every total is reconciled against the document. Anything uncertain is held, never guessed.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">04</div>
+        <h3>You approve. It bills.</h3>
+        <p>One click creates the QuickBooks invoice, with the timesheet attached as proof.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="privacy-block">
+      <div>
+        <p class="eyebrow">Where your data lives</p>
+        <h2 style="margin:0">Your records stay yours.</h2>
+      </div>
+      <div>
+        <p>Timesheets stay in your OneDrive. Invoices stay in your QuickBooks. StaffFlow reads from your systems and writes back to them — it never becomes a second place your client records live.</p>
+        <p>We hold what the automation needs: your placement and rate configuration, the hours billed, and error logs. Not your books.</p>
+        <div class="note">To read a timesheet, its contents pass through Microsoft Azure and OpenAI. We name every processor in the <a href="/privacy.html" style="color:var(--paid)">privacy policy</a>, and say plainly what each one sees.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-bottom:0">
+  <div class="wrap">
+    <p class="eyebrow">Never guesses</p>
+    <h2 style="max-width:16em">When the numbers don't reconcile, StaffFlow refuses to bill.</h2>
+    <p style="max-width:34em;color:#33383F;margin:0">A wrong invoice costs more than a late one. Every figure is checked against the source document before it reaches your books, and anything it can't prove is held for you to look at.</p>
+  </div>
+</section>
+
+<div class="contact">
+  <div class="wrap">
+    <p class="eyebrow">Get in touch</p>
+    <a class="mail" href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;width:100%">
+    <span>© 2026 StaffFlow</span>
+    <span>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

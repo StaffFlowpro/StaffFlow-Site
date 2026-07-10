@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — StaffFlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#12161C;--paper:#FBFAF7;--rule:#E2DFD8;--muted:#6B6E74;--paid:#2C6E52;--stub:#F3F1EC;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Newsreader",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,monospace;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17.5px;line-height:1.68;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+a{color:var(--paid)}
+a:focus-visible{outline:2px solid var(--paid);outline-offset:3px}
+header{padding:26px 0;border-bottom:1px solid var(--rule);margin-bottom:56px}
+.brand{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--paid)}
+h1{font-family:var(--display);font-weight:700;font-size:40px;letter-spacing:-.03em;line-height:1.08;margin:0 0 10px}
+.updated{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:0 0 44px}
+h2{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.015em;margin:44px 0 12px}
+p,li{color:#2C3138}
+ul{padding-left:20px}
+li{margin-bottom:9px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:15px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.callout{background:var(--stub);border:1px solid var(--rule);border-radius:3px;padding:18px 20px;margin:24px 0;font-size:16px}
+footer{border-top:1px solid var(--rule);margin-top:64px;padding:26px 0 44px;font-family:var(--mono);font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+footer a{text-decoration:none;margin-left:20px}
+</style>
+</head>
+<body>
+
+<header><div class="wrap"><a class="brand" href="/">Staff<span>Flow</span></a></div></header>
+
+<div class="wrap">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated 10 July 2026</p>
+
+  <p>StaffFlow is timesheet-to-invoice automation software for staffing firms. This policy explains what data we handle, where it goes, and who else can see it. It is written to describe what the software actually does, rather than to reserve rights we do not use.</p>
+
+  <div class="callout">
+    <strong>In short.</strong> Your timesheets and invoices remain in systems you own — your Microsoft 365 tenant and your QuickBooks company. StaffFlow reads from them and writes back to them. To read a timesheet, its contents pass through Microsoft Azure and OpenAI. We do not sell data, and we do not use your data to train models.
+  </div>
+
+  <h2>Who we are</h2>
+  <p>StaffFlow is operated by Saichandra Bandi, Hyderabad, Telangana, India. For any question about this policy, or to exercise a right described below, write to <a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a>.</p>
+  <p>Where StaffFlow processes data on behalf of a customer, that customer is the data controller and StaffFlow is a processor acting on their instructions.</p>
+
+  <h2>What data StaffFlow handles</h2>
+  <ul>
+    <li><strong>Configuration.</strong> Consultant names, placement records, bill rates, vendor names, and routing email addresses. Entered by the customer.</li>
+    <li><strong>Timesheet content.</strong> Documents received in the customer's mailbox, and the hours read from them.</li>
+    <li><strong>Invoice records.</strong> Amounts, periods, and the QuickBooks identifiers of invoices created.</li>
+    <li><strong>Operational logs.</strong> Errors, processing outcomes, and the identifiers of emails handled — used to investigate failures.</li>
+    <li><strong>Account data.</strong> The email address and password hash of each dashboard user.</li>
+  </ul>
+  <p>StaffFlow does not request or store payment card details, bank account numbers, social security numbers, or payroll records.</p>
+
+  <h2>Where your records live</h2>
+  <p>StaffFlow does not become a second system of record. Timesheet documents are filed into the customer's own OneDrive. Invoices are created in the customer's own QuickBooks company. StaffFlow's database holds the configuration, the hours billed, the invoice references, and the operational logs described above.</p>
+
+  <h2>Who else sees your data</h2>
+  <p>Reading a timesheet requires sending its contents to services that can interpret a document. We name each one, and what it receives:</p>
+
+  <table>
+    <thead><tr><th>Processor</th><th>What it receives</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Microsoft Azure (Document Intelligence)</td><td>Timesheet document contents</td><td>Reads text and tables from images and PDFs</td></tr>
+      <tr><td>OpenAI</td><td>Timesheet text and tables</td><td>Extracts hours, dates, and labels</td></tr>
+      <tr><td>Microsoft Graph</td><td>Mailbox and OneDrive access, as authorised by the customer</td><td>Receives timesheets, files documents</td></tr>
+      <tr><td>Intuit QuickBooks Online</td><td>Invoice data, as authorised by the customer</td><td>Creates invoices and attaches proof</td></tr>
+      <tr><td>Railway</td><td>Application hosting and database</td><td>Runs StaffFlow</td></tr>
+      <tr><td>Cloudflare</td><td>Dashboard hosting</td><td>Serves the web application</td></tr>
+      <tr><td>Resend</td><td>Operational alert emails</td><td>Notifies the operator of failures</td></tr>
+    </tbody>
+  </table>
+
+  <p>These processors act on our instructions under their own terms. We do not sell personal data, we do not share it for advertising, and we do not permit our processors to use customer content to train their models.</p>
+
+  <h2>QuickBooks data</h2>
+  <p>StaffFlow accesses a customer's QuickBooks company only after an authorised user of that company grants access through Intuit's consent screen. We request the minimum scope needed to read customers and create invoices. Access can be revoked at any time from within QuickBooks, or by writing to us. StaffFlow does not read bank feeds, payroll, or transactions unrelated to the invoices it creates.</p>
+
+  <h2>Security</h2>
+  <ul>
+    <li>All data in transit is encrypted with TLS.</li>
+    <li>Database and application hosting are provided by Railway, with encryption at rest.</li>
+    <li>Access to the dashboard requires authentication, and every request is scoped to a single customer.</li>
+    <li>Support access is limited to error logs. StaffFlow support does not read timesheet contents in the course of ordinary support.</li>
+    <li>Credentials and API tokens are held as environment secrets, never in source code.</li>
+  </ul>
+  <p>No system is perfectly secure. If a breach affects your data, we will tell you without undue delay and describe what happened.</p>
+
+  <h2>Retention</h2>
+  <p>Configuration, hours, and invoice records are retained for as long as the customer's account is active, because they are the audit trail behind invoices already issued. Operational logs are retained while they remain useful for investigation. On written request, and where no legal or accounting obligation requires otherwise, we will delete a customer's data.</p>
+
+  <h2>Your rights</h2>
+  <p>Depending on where you live, you may have the right to access, correct, export, or delete personal data we hold about you, and to object to or restrict its processing. Where StaffFlow acts as a processor for a customer, please direct such a request to that customer; we will assist them in answering it. Otherwise, write to <a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a>.</p>
+
+  <h2>International transfers</h2>
+  <p>StaffFlow is operated from India. Its processors operate infrastructure in the United States and elsewhere. Data handled by StaffFlow may therefore be processed outside the country in which it was collected.</p>
+
+  <h2>Children</h2>
+  <p>StaffFlow is business software. It is not directed at children and we do not knowingly collect data from anyone under 18.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes materially, we will update the date above and, where the change affects an active customer, tell them directly.</p>
+
+  <h2>Contact</h2>
+  <p><a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a></p>
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;width:100%">
+    <span>© 2026 StaffFlow</span>
+    <span><a href="/terms.html">Terms</a><a href="/">Home</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
