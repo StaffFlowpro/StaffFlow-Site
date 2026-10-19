@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security — StaffFlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#12161C;--paper:#FBFAF7;--rule:#E2DFD8;--muted:#6B6E74;--paid:#2C6E52;--stub:#F3F1EC;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Newsreader",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,monospace;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17.5px;line-height:1.68;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+a{color:var(--paid)}
+a:focus-visible{outline:2px solid var(--paid);outline-offset:3px}
+header{padding:26px 0;border-bottom:1px solid var(--rule);margin-bottom:56px}
+.brand{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--paid)}
+h1{font-family:var(--display);font-weight:700;font-size:40px;letter-spacing:-.03em;line-height:1.08;margin:0 0 10px}
+.updated{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:0 0 44px}
+h2{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.015em;margin:44px 0 12px}
+p,li{color:#2C3138}
+ul{padding-left:20px}
+li{margin-bottom:9px}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:15px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.callout{background:var(--stub);border:1px solid var(--rule);border-radius:3px;padding:18px 20px;margin:24px 0;font-size:16px}
+footer{border-top:1px solid var(--rule);margin-top:64px;padding:26px 0 44px;font-family:var(--mono);font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+footer a{text-decoration:none;margin-left:20px}
+</style>
+</head>
+<body>
+
+<header><div class="wrap"><a class="brand" href="/">Staff<span>Flow</span></a></div></header>
+
+<div class="wrap">
+  <h1>Security</h1>
+  <p class="updated">Last updated 20 October 2026</p>
+
+  <p>StaffFlow handles timesheets, rates and invoices, and has access to the mailbox, storage and accounting system a customer connects. This page describes the measures that protect that data. It describes controls that are in place today; it does not describe plans as though they were in place. It forms part of the technical and organisational measures referred to in our <a href="/dpa.html">Data Processing Agreement</a>.</p>
+
+  <div class="callout">
+    <strong>In short.</strong> Your documents stay in your OneDrive and your invoices stay in your QuickBooks. Every record StaffFlow keeps belongs to exactly one customer. The most sensitive secrets are encrypted by StaffFlow itself, every connection is encrypted, and no invoice is created without a person approving it.
+  </div>
+
+  <h2>Your systems remain the system of record</h2>
+  <p>StaffFlow is designed not to become a second copy of your business. Timesheet documents are filed into your own OneDrive. Invoices are created in your own QuickBooks company, with the timesheet attached as proof. StaffFlow's own database holds what it needs to do its job: your configuration, the hours recorded, invoice references, and the audit history behind them. If you stop using StaffFlow, your documents and invoices remain where they already are.</p>
+
+  <h2>Separation between customers</h2>
+  <ul>
+    <li>Every record StaffFlow holds carries the customer it belongs to, and every dashboard request is limited to the signed-in user's own customer.</li>
+    <li>An incoming email is assigned to a customer at the moment it first arrives, from the mailbox it arrived in. It is never assigned from the email's contents, so a document cannot place itself in another customer's account.</li>
+    <li>Files are read and written only through the storage location configured for that customer. StaffFlow refuses to act on a storage location that does not belong to the customer it is working for.</li>
+    <li>One customer's data is never used to provide the service to another.</li>
+  </ul>
+
+  <h2>Encryption</h2>
+  <ul>
+    <li><strong>In transit.</strong> All connections — between your browser and StaffFlow, and between StaffFlow and Microsoft, Intuit and its other providers — are encrypted with TLS.</li>
+    <li><strong>QuickBooks access tokens</strong> are encrypted by StaffFlow before they are stored, using authenticated encryption under a dedicated key.</li>
+    <li><strong>Two-step sign-in secrets</strong> are encrypted by StaffFlow under a separate dedicated key.</li>
+    <li><strong>Passwords and recovery codes</strong> are never stored. Only a bcrypt hash of each is kept.</li>
+    <li><strong>Keys and credentials</strong> are held as secrets of the hosting platform, separate from the database and never in source code. Test and demonstration environments use their own separate keys and never hold production credentials.</li>
+  </ul>
+
+  <h2>Access to the dashboard</h2>
+  <ul>
+    <li>Every page and every request requires authentication.</li>
+    <li>Two-step sign-in with an authenticator app is supported, with single-use recovery codes.</li>
+    <li>Repeated failed sign-in attempts temporarily lock the account.</li>
+    <li>Sessions are held in a secure, HTTP-only cookie that page scripts cannot read, and expire after twelve hours.</li>
+    <li>Roles separate users who may approve and change records from users with read-only access. A user's role is checked against the current record on every change, so revoking a role takes effect immediately.</li>
+  </ul>
+
+  <h2>Access to your mailbox, storage and QuickBooks</h2>
+  <ul>
+    <li>Access is granted only by an authorised administrator of your Microsoft 365 tenant or your QuickBooks company, through that provider's own consent screen, and can be revoked there at any time.</li>
+    <li>StaffFlow requests the narrowest access it needs: to receive timesheets, file documents, read customers and create invoices. It does not read bank feeds, payroll, or transactions unrelated to the invoices it creates.</li>
+    <li>Change notifications from Microsoft are verified before StaffFlow acts on them.</li>
+    <li>StaffFlow's automated endpoints each require a secret, compared in constant time. A missing or wrong secret is refused.</li>
+  </ul>
+
+  <h2>Artificial intelligence, and its limits</h2>
+  <p>StaffFlow uses Microsoft Azure AI Document Intelligence and OpenAI to read timesheet documents. They read; they do not decide.</p>
+  <ul>
+    <li>Every figure a model reads is checked by fixed rules against the document itself, including the document's own printed totals and dates.</li>
+    <li>Where a figure cannot be verified, StaffFlow holds it for a person rather than guess. A held item shows the reason it was held.</li>
+    <li>No invoice is created without a person approving the period first.</li>
+    <li>Your data is not used to train any model, by StaffFlow or by its providers. Azure Document Intelligence deletes documents 24 hours after processing. OpenAI may keep request data for up to 30 days solely to detect abuse, and then deletes it.</li>
+  </ul>
+
+  <h2>Audit trail</h2>
+  <ul>
+    <li>Every approval, correction, discard and closure is recorded with the user who made it, the time, and the reason.</li>
+    <li>Changes to placement records — rates, dates and assignments — are kept as a change history.</li>
+    <li>Where a person corrects a figure, the record shows that it was corrected by a person, not read from the document.</li>
+    <li>Items put on hold keep a record of what they were before and after the hold was resolved.</li>
+  </ul>
+
+  <h2>Monitoring and reliability</h2>
+  <ul>
+    <li>Every processing failure is recorded and raises an alert to the operator. Failures that can be retried safely are retried automatically.</li>
+    <li>StaffFlow alerts if a customer's mailbox stops delivering timesheets for longer than expected, so a broken connection is found within days, not at month end.</li>
+    <li>An independent check alerts if StaffFlow's scheduled work stops running.</li>
+    <li>A document is never billed twice: each email is recorded when first received, and a repeated delivery is recognised and ignored.</li>
+  </ul>
+
+  <h2>Operator access</h2>
+  <p>StaffFlow is operated by a single operator. Administrative access to production systems is limited to that operator. In the ordinary course of support, the operator reviews error logs and processing outcomes, not the contents of timesheets. Where reading a specific document is necessary to resolve an issue you have raised, only that document is read, and only to the extent necessary.</p>
+
+  <h2>Providers</h2>
+  <p>StaffFlow is hosted on Railway and its dashboard is served by Cloudflare. The providers that process customer data, what each receives, and how long each keeps it are listed in <a href="/dpa.html#a3">Annex 3 of the Data Processing Agreement</a>. You will be told at least fourteen days before a new one is added.</p>
+
+  <h2>Retention and deletion</h2>
+  <p>Configuration, hours and invoice records are kept while your account is active, because they are the audit trail behind invoices already issued. When you leave, and on written request, StaffFlow returns or deletes them within thirty days, as set out in the <a href="/dpa.html#s13">Data Processing Agreement</a>.</p>
+
+  <h2>Incidents</h2>
+  <p>If a security incident affects your data, you will be notified without undue delay and in any event within 72 hours of StaffFlow becoming aware of it, with what happened, what data was affected, and what is being done. StaffFlow will work with you on any notice you are required to give.</p>
+
+  <h2>Reporting a vulnerability</h2>
+  <p>If you believe you have found a security vulnerability in StaffFlow, please write to <a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a> with "Security" in the subject line. Please give us a reasonable time to fix it before disclosing it, and do not access, change or delete data that is not yours while investigating. We will acknowledge your report, keep you informed, and will not pursue action against good-faith research that follows these terms.</p>
+
+  <h2>Questions</h2>
+  <p>Customers and prospective customers may request written answers to a security questionnaire at <a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a>.</p>
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;width:100%">
+    <span>© 2026 StaffFlow</span>
+    <span><a href="/dpa.html">DPA</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/">Home</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
