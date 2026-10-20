@@ -83,7 +83,7 @@ footer a:hover{color:var(--ink)}
   <p>StaffFlow is timesheet-to-invoice automation software for staffing firms. This policy explains what data we handle, where it goes, and who else can see it. It is written to describe what the software actually does, rather than to reserve rights we do not use.</p>
 
   <div class="callout">
-    <strong>In short.</strong> Your timesheets and invoices remain in systems you own — your Microsoft 365 tenant and your QuickBooks company. StaffFlow reads from them and writes back to them. To read a timesheet, its contents pass through Microsoft Azure and OpenAI. We do not sell data, and we do not use your data to train models.
+    <strong>In short.</strong> Your timesheets and invoices remain in systems you own — your Microsoft 365 tenant and your QuickBooks company. StaffFlow reads from them and writes back to them. To read a timesheet, its contents pass through StaffFlow’s own self-hosted workflow engine, Microsoft Azure and OpenAI. We do not sell data, and we do not use your data to train models.
   </div>
 
   <h2>Who we are</h2>
@@ -98,7 +98,7 @@ footer a:hover{color:var(--ink)}
     <li><strong>Operational logs.</strong> Errors, processing outcomes, and the identifiers of emails handled — used to investigate failures.</li>
     <li><strong>Account data.</strong> The name, email address, role, password hash and, where enabled, encrypted two-step sign-in secret of each dashboard user.</li>
   </ul>
-  <p>StaffFlow does not request or store payment card details, bank account numbers, social security numbers, or tax identifiers. StaffFlow computes pay figures for the customer's review; it does not run payroll, make payments, or hold the bank details of anyone it pays.</p>
+  <p>StaffFlow does not request or store payment card details, bank account numbers, social security numbers, or tax identifiers. Where a customer enters pay rates or pay percentages, StaffFlow uses them only to compute pay figures and margin for the customer's review; it does not run payroll, make payments, or hold the bank details of anyone it pays.</p>
 
   <h2>Where your records live</h2>
   <p>StaffFlow does not become a second system of record. Timesheet documents are filed into the customer's own OneDrive. Invoices are created in the customer's own QuickBooks company. StaffFlow's database holds the configuration, the hours recorded, the invoice references and pay figures, the audit history behind them, and the operational logs described above.</p>
@@ -109,6 +109,7 @@ footer a:hover{color:var(--ink)}
   <table>
     <thead><tr><th>Processor</th><th>What it receives</th><th>Purpose</th></tr></thead>
     <tbody>
+      <tr><td>n8n (workflow engine, self-hosted on our Railway infrastructure — not a third-party service)</td><td>Timesheet emails and their attachments</td><td>Runs the workflow that passes a timesheet to the services below</td></tr>
       <tr><td>Microsoft Azure (Document Intelligence)</td><td>Timesheet document contents</td><td>Reads text and tables from images and PDFs. Deleted 24 hours after processing</td></tr>
       <tr><td>OpenAI</td><td>Timesheet text and tables</td><td>Extracts hours, dates, and labels. Not used for training; may be kept up to 30 days for abuse monitoring, then deleted</td></tr>
       <tr><td>Microsoft Graph</td><td>Mailbox and OneDrive access, as authorised by the customer</td><td>Receives timesheets, files documents</td></tr>
@@ -119,17 +120,17 @@ footer a:hover{color:var(--ink)}
     </tbody>
   </table>
 
-  <p>Microsoft Graph and QuickBooks Online act on the customer's own Microsoft 365 tenant and QuickBooks company, as the customer authorises. The others act as our sub-processors, under the terms and retention set out in <a href="/dpa.html#a3">Annex 3 of the Data Processing Agreement</a>; customers are told at least fourteen days before a new one is added. We do not sell personal data, we do not share it for advertising, and we do not permit our processors to use customer content to train their models.</p>
+  <p>n8n is StaffFlow's own software, run on Railway. Microsoft Graph and QuickBooks Online act on the customer's own Microsoft 365 tenant and QuickBooks company, as the customer authorises. The others act as our sub-processors, under the terms and retention set out in <a href="/dpa.html#a3">Annex 3 of the Data Processing Agreement</a>; customers are told at least fourteen days before a new one is added. We do not sell personal data, we do not share it for advertising, and we do not permit our processors to use customer content to train their models.</p>
 
   <h2>QuickBooks data</h2>
-  <p>StaffFlow accesses a customer's QuickBooks company only after an authorised user of that company grants access through Intuit's consent screen. We request the minimum scope needed to read customers and create invoices. Access can be revoked at any time from within QuickBooks, or by writing to us. StaffFlow does not read bank feeds, payroll, or transactions unrelated to the invoices it creates.</p>
+  <p>StaffFlow accesses a customer's QuickBooks company only after an authorised user of that company grants access through Intuit's consent screen. We request the minimum scope needed to read customers, create invoices, and read the status and payments of the invoices StaffFlow created or the customer linked to it. Access can be revoked at any time from within QuickBooks, or by writing to us. StaffFlow does not read bank feeds, payroll, or transactions unrelated to those invoices.</p>
 
   <h2>Security</h2>
   <ul>
     <li>All data in transit is encrypted with TLS.</li>
     <li>QuickBooks access tokens and two-step sign-in secrets are encrypted by StaffFlow before storage. Passwords are stored only as bcrypt hashes.</li>
     <li>Access to the dashboard requires authentication, and every request is scoped to a single customer.</li>
-    <li>Support access is limited to error logs. StaffFlow support does not read timesheet contents in the course of ordinary support.</li>
+    <li>StaffFlow staff access customer data only to operate the service and resolve issues, and do not review timesheet contents beyond what an issue requires.</li>
     <li>Credentials and API tokens are held as environment secrets, never in source code.</li>
   </ul>
   <p>The full set of measures is described on our <a href="/security.html">Security</a> page. No system is perfectly secure. If a breach affects your data, we will tell you without undue delay, and in any event within 72 hours of becoming aware of it, and describe what happened.</p>

@@ -118,7 +118,7 @@ footer a:hover{color:var(--ink)}
   <h2>Access to your mailbox, storage and QuickBooks</h2>
   <ul>
     <li>Access is granted only by an authorised administrator of your Microsoft 365 tenant or your QuickBooks company, through that provider's own consent screen, and can be revoked there at any time.</li>
-    <li>StaffFlow requests the narrowest access it needs: to receive timesheets, file documents, read customers and create invoices. It does not read bank feeds, payroll, or transactions unrelated to the invoices it creates.</li>
+    <li>StaffFlow requests the narrowest access it needs: to receive timesheets, file documents, read customers, create invoices, and read the status and payments of those invoices. It does not read bank feeds, payroll, or transactions unrelated to the invoices it creates.</li>
     <li>Change notifications from Microsoft are verified before StaffFlow acts on them.</li>
     <li>StaffFlow's automated endpoints each require a secret, compared in constant time. A missing or wrong secret is refused.</li>
   </ul>
@@ -152,7 +152,7 @@ footer a:hover{color:var(--ink)}
   <p>StaffFlow is operated by a single operator. Administrative access to production systems is limited to that operator. In the ordinary course of support, the operator reviews error logs and processing outcomes, not the contents of timesheets. Where reading a specific document is necessary to resolve an issue you have raised, only that document is read, and only to the extent necessary.</p>
 
   <h2>Providers</h2>
-  <p>StaffFlow is hosted on Railway and its dashboard is served by Cloudflare. The providers that process customer data, what each receives, and how long each keeps it are listed in <a href="/dpa.html#a3">Annex 3 of the Data Processing Agreement</a>. You will be told at least fourteen days before a new one is added.</p>
+  <p>StaffFlow is hosted on Railway, including its own self-hosted n8n workflow engine, and its dashboard is served by Cloudflare. The providers that process customer data, what each receives, and how long each keeps it are listed in <a href="/dpa.html#a3">Annex 3 of the Data Processing Agreement</a>. You will be told at least fourteen days before a new one is added.</p>
 
   <h2>Retention and deletion</h2>
   <p>Configuration, hours and invoice records are kept while your account is active, because they are the audit trail behind invoices already issued. When you leave, and on written request, StaffFlow returns or deletes them within thirty days, as set out in the <a href="/dpa.html#s13">Data Processing Agreement</a>.</p>
