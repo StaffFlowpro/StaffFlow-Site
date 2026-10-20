@@ -78,7 +78,7 @@ footer a:hover{color:var(--ink)}
 
 <main class="wrap">
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated 20 October 2026</p>
+  <p class="updated">Last updated 21 October 2026</p>
 
   <p>StaffFlow is timesheet-to-invoice automation software for staffing firms. This policy explains what data we handle, where it goes, and who else can see it. It is written to describe what the software actually does, rather than to reserve rights we do not use.</p>
 
@@ -96,7 +96,7 @@ footer a:hover{color:var(--ink)}
     <li><strong>Timesheet content.</strong> Documents received in the customer's mailbox, and the hours read from them.</li>
     <li><strong>Invoice and pay figures.</strong> Invoice amounts, periods, and the QuickBooks identifiers of invoices created; and the pay amounts StaffFlow computes from the customer's pay rates and percentages.</li>
     <li><strong>Operational logs.</strong> Errors, processing outcomes, and the identifiers of emails handled — used to investigate failures.</li>
-    <li><strong>Account data.</strong> The name, email address, role, password hash and, where enabled, encrypted two-step sign-in secret of each dashboard user.</li>
+    <li><strong>Account data.</strong> The name, email address, role, password hash and, where enabled, encrypted two-step sign-in secret of each dashboard user. When someone asks to reset a password, we record the time and the network address of the request, to limit abuse.</li>
   </ul>
   <p>StaffFlow does not request or store payment card details, bank account numbers, social security numbers, or tax identifiers. Where a customer enters pay rates or pay percentages, StaffFlow uses them only to compute pay figures and margin for the customer's review; it does not run payroll, make payments, or hold the bank details of anyone it pays.</p>
 
@@ -116,7 +116,7 @@ footer a:hover{color:var(--ink)}
       <tr><td>Intuit QuickBooks Online</td><td>Invoice data, as authorised by the customer</td><td>Creates invoices and attaches proof</td></tr>
       <tr><td>Railway</td><td>Application hosting, database, and workflow engine</td><td>Runs StaffFlow</td></tr>
       <tr><td>Cloudflare</td><td>Dashboard hosting</td><td>Serves the web application</td></tr>
-      <tr><td>Resend</td><td>Operational alert emails</td><td>Notifies the operator of failures</td></tr>
+      <tr><td>Resend</td><td>Operational alert emails; password-reset and password-changed emails to dashboard users (their email address and, for a reset, a single-use link)</td><td>Notifies the operator of failures; sends account emails</td></tr>
     </tbody>
   </table>
 
@@ -129,6 +129,7 @@ footer a:hover{color:var(--ink)}
   <ul>
     <li>All data in transit is encrypted with TLS.</li>
     <li>QuickBooks access tokens and two-step sign-in secrets are encrypted by StaffFlow before storage. Passwords are stored only as bcrypt hashes.</li>
+    <li>A password-reset link works once and expires after 30 minutes, and only a one-way hash of it is stored. A reset never signs anyone in, so two-step sign-in still applies.</li>
     <li>Access to the dashboard requires authentication, and every request is scoped to a single customer.</li>
     <li>StaffFlow staff access customer data only to operate the service and resolve issues, and do not review timesheet contents beyond what an issue requires.</li>
     <li>Credentials and API tokens are held as environment secrets, never in source code.</li>
@@ -136,7 +137,7 @@ footer a:hover{color:var(--ink)}
   <p>The full set of measures is described on our <a href="/security.html">Security</a> page. No system is perfectly secure. If a breach affects your data, we will tell you without undue delay, and in any event within 72 hours of becoming aware of it, and describe what happened.</p>
 
   <h2>Retention</h2>
-  <p>Configuration, hours, and invoice records are retained for as long as the customer's account is active, because they are the audit trail behind invoices already issued. Operational logs are retained while they remain useful for investigation. On written request, and where no legal or accounting obligation requires otherwise, we will return or delete a customer's data within thirty days.</p>
+  <p>Configuration, hours, and invoice records are retained for as long as the customer's account is active, because they are the audit trail behind invoices already issued. Operational logs are retained while they remain useful for investigation. Records of password-reset requests are deleted after 90 days. On written request, and where no legal or accounting obligation requires otherwise, we will return or delete a customer's data within thirty days.</p>
 
   <h2>Your rights</h2>
   <p>Depending on where you live, you may have the right to access, correct, export, or delete personal data we hold about you, and to object to or restrict its processing. Where StaffFlow acts as a processor for a customer, please direct such a request to that customer; we will assist them in answering it. Otherwise, write to <a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a>.</p>

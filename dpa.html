@@ -78,7 +78,7 @@ footer a:hover{color:var(--ink)}
 
 <main class="wrap">
   <h1>Data Processing Agreement</h1>
-  <p class="updated">Effective 20 October 2026</p>
+  <p class="updated">Effective 20 October 2026 · Updated 21 October 2026</p>
 
   <p>This Data Processing Agreement ("DPA") forms part of the <a href="/terms.html">Terms of Service</a> (the "Terms") between Saichandra Bandi, operating StaffFlow, Hyderabad, Telangana, India ("StaffFlow", "Processor", "we"), and the customer that uses StaffFlow (the "Customer", "you"). It sets out how StaffFlow processes Personal Data on the Customer's behalf. It applies automatically to every Customer from the date the Customer first uses StaffFlow, and requires no separate signature. A Customer that requires a countersigned copy may request one at <a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a>.</p>
 
@@ -197,11 +197,11 @@ footer a:hover{color:var(--ink)}
   <table>
     <tbody>
       <tr><th>Subject matter</th><td>Automating the processing of consultant timesheets into recorded hours, payroll figures and invoices for the Customer.</td></tr>
-      <tr><th>Nature of processing</th><td>Receiving timesheet emails from a mailbox the Customer authorises; storing and filing the documents in the Customer's storage; reading hours, dates and labels from documents; checking them against the document; recording hours; presenting items for review and approval; computing invoice and pay amounts from the Customer's configuration; creating approved invoices in the Customer's QuickBooks company and reading their status and payments; keeping an audit trail.</td></tr>
+      <tr><th>Nature of processing</th><td>Receiving timesheet emails from a mailbox the Customer authorises; storing and filing the documents in the Customer's storage; reading hours, dates and labels from documents; checking them against the document; recording hours; presenting items for review and approval; computing invoice and pay amounts from the Customer's configuration; creating approved invoices in the Customer's QuickBooks company and reading their status and payments; keeping an audit trail; sending account emails to the Customer's dashboard users (password-reset links and password-change confirmations).</td></tr>
       <tr><th>Purpose</th><td>Providing the service under the Terms, on the Customer's instructions.</td></tr>
       <tr><th>Duration</th><td>For the term of the Customer's use of StaffFlow, and afterwards only as set out in Section 13.</td></tr>
       <tr><th>Data Subjects</th><td>The Customer's consultants and contractors; contacts at the Customer's clients and vendors (such as timesheet approvers); the Customer's dashboard users.</td></tr>
-      <tr><th>Categories of Personal Data</th><td>Names; business email addresses; hours worked and the dates worked; project, client and vendor names; bill rates and pay rates entered by the Customer; timesheet and approval documents and the emails that carry them; invoice amounts and references; dashboard account and authentication data.</td></tr>
+      <tr><th>Categories of Personal Data</th><td>Names; business email addresses; hours worked and the dates worked; project, client and vendor names; bill rates and pay rates entered by the Customer; timesheet and approval documents and the emails that carry them; invoice amounts and references; dashboard account and authentication data, including records of password-reset requests (the time and the network address of each request, kept for ninety days).</td></tr>
       <tr><th>Sensitive data</th><td>None intended. StaffFlow does not ask for and is not designed to process government identifiers, bank account or payment card details, or special categories of personal data. The Customer should not configure StaffFlow to receive them.</td></tr>
     </tbody>
   </table>
@@ -211,7 +211,7 @@ footer a:hover{color:var(--ink)}
     <li><strong>Encryption in transit.</strong> All traffic to and from StaffFlow and between StaffFlow and its Sub-processors is encrypted with TLS.</li>
     <li><strong>Encryption of the most sensitive values.</strong> QuickBooks access tokens and two-step sign-in secrets are encrypted by StaffFlow with authenticated encryption, each under its own key. Passwords and recovery codes are stored only as bcrypt hashes.</li>
     <li><strong>Separation between customers.</strong> As described in Section 6.</li>
-    <li><strong>Access control.</strong> Every dashboard request requires authentication. Roles distinguish users who may approve and change records from users with read-only access. Two-step sign-in with an authenticator app is available. Repeated failed sign-ins lock the account temporarily. Sessions use secure, HTTP-only cookies and expire after twelve hours.</li>
+    <li><strong>Access control.</strong> Every dashboard request requires authentication. Roles distinguish users who may approve and change records from users with read-only access. Two-step sign-in with an authenticator app is available. Repeated failed sign-ins lock the account temporarily. Sessions use secure, HTTP-only cookies and expire after twelve hours. A forgotten password is reset through a link emailed to the user's own address: each link works once and expires after thirty minutes, only a one-way hash of it is stored, requests are rate-limited, and the response never reveals whether an account exists. A reset changes the password only — it does not sign the user in, so two-step sign-in still applies — and it signs the user out of every session.</li>
     <li><strong>Service-to-service authentication.</strong> Every automated endpoint requires a secret, compared in constant time and failing closed. Notifications from Microsoft are verified before they are acted on.</li>
     <li><strong>Secrets management.</strong> Credentials and keys are held as environment secrets of the hosting platform, never in source code.</li>
     <li><strong>Human approval and verification.</strong> As described in Section 12.2.</li>
@@ -228,7 +228,7 @@ footer a:hover{color:var(--ink)}
       <tr><td>OpenAI, L.L.C.</td><td>Text and tables of timesheet documents</td><td>Reading hours, dates and labels</td><td>Not used for training. May be retained up to 30 days for abuse monitoring, then deleted</td></tr>
       <tr><td>Microsoft Corporation (Azure AI Document Intelligence)</td><td>Images and PDFs of timesheet documents</td><td>Reading text and tables</td><td>Deleted automatically 24 hours after processing</td></tr>
       <tr><td>Cloudflare, Inc.</td><td>Requests to the dashboard</td><td>Hosting the web application</td><td>Transient</td></tr>
-      <tr><td>Resend, Inc.</td><td>Operational alert emails to StaffFlow's operator, which may include a sender's email address and an error description</td><td>Failure alerts</td><td>Per Resend's standard retention</td></tr>
+      <tr><td>Resend, Inc.</td><td>Operational alert emails to StaffFlow's operator, which may include a sender's email address and an error description; and account emails to the Customer's dashboard users (password-reset links and password-change confirmations), which contain the user's email address and, for a reset, a single-use link</td><td>Failure alerts; account emails</td><td>Per Resend's standard retention. A reset link expires 30 minutes after it is sent and works once</td></tr>
     </tbody>
   </table></div>
   <p>The Customer's own Microsoft 365 tenant (accessed through Microsoft Graph) and the Customer's own QuickBooks Online company are Customer Systems under Section 7.4, not Sub-processors.</p>
