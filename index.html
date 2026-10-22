@@ -80,6 +80,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px
 .inv span{display:block;font-size:13px;color:var(--faint)}
 .inv strong{display:block;font-size:24px;font-weight:700;letter-spacing:-.02em;margin-top:2px}
 .inv .btn{padding:9px 14px;font-size:13.5px;white-space:nowrap;color:#fff;display:inline-flex}
+.flow .sample{position:absolute;top:-30px;right:0;font-size:11.5px;font-weight:500;color:var(--faint);background:#fff;border:1px solid var(--line);border-radius:20px;padding:2px 10px}
 .qb{font-style:normal;width:20px;height:20px;border-radius:50%;background:#2CA01C !important}
 
 /* ---------- proof ---------- */
@@ -116,29 +117,26 @@ section.alt{background:var(--bg);border-top:1px solid var(--line);border-bottom:
 /* ---------- the one dark band: the product ---------- */
 .show{background:radial-gradient(760px 420px at 80% 0%,rgba(59,130,246,.26),transparent 62%),
                  radial-gradient(560px 340px at 0% 100%,rgba(91,155,255,.12),transparent 60%),var(--navy);color:var(--on-navy);padding:104px 0}
-.show .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.show .wrap{display:block}
+.show-text{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;margin-bottom:48px}
 .show .eyebrow{color:var(--blue-hi)}
 .show h2{font-size:42px;font-weight:700;color:#fff}
-.show p{font-size:18px;color:#B4C0D4}
-.show ul{list-style:none;padding:0;margin:26px 0 0}
+.show p{font-size:18px;color:#B4C0D4;margin-bottom:0}
+.show ul{list-style:none;padding:0;margin:0}
 .show li{padding:12px 0;border-top:1px solid var(--navy-line);font-size:16px;color:var(--on-navy);display:flex;gap:12px}
 .show li b{color:var(--blue-hi);font-weight:600;min-width:22px}
-.app{background:var(--card);color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06)}
-.app-top{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
-.app-top b{font-size:15px;font-weight:600}
-.app-top span{font-size:11.5px;font-weight:500;color:var(--faint);background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:2px 10px}
-.tbl{width:100%;border-collapse:collapse;font-size:14px}
-.tbl th{font-size:11.5px;font-weight:500;color:var(--faint);text-align:left;padding:10px 16px;background:#FCFCFD;border-bottom:1px solid var(--line)}
-.tbl td{padding:13px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
-.tbl td:first-child{font-weight:600}
-.tbl .r{text-align:right;font-variant-numeric:tabular-nums}
-.tbl small{color:var(--faint)}
 .chip{display:inline-block;font-size:12px;font-weight:500;padding:3px 9px;border-radius:20px}
-.ok{background:var(--ok-soft);color:var(--ok)}
 .held{background:var(--hold-soft);color:var(--hold)}
-.app-foot{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:#FCFCFD}
-.app-foot small{font-size:12.5px;color:var(--faint)}
-.app-foot .btn{padding:9px 15px;font-size:14px}
+.views{display:inline-flex;gap:4px;padding:4px;margin-bottom:20px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid var(--navy-line)}
+.views button{font:inherit;font-size:14.5px;font-weight:600;color:var(--on-navy-muted);background:none;border:0;border-radius:9px;padding:9px 16px;cursor:pointer}
+.views button:hover{color:#fff}
+.views button[aria-selected="true"]{background:var(--blue);color:#fff}
+.views button:focus-visible{outline:2px solid var(--blue-hi);outline-offset:2px}
+.shot figcaption b{color:#fff;font-weight:600}
+.shot{margin:0}
+.shot img{display:block;width:100%;height:auto;border-radius:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)}
+.shot figcaption{margin-top:14px;font-size:13.5px;color:var(--on-navy-muted)}
+.shot figcaption a{color:var(--blue-hi);text-decoration:none}
 
 .handles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .h-item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
@@ -165,6 +163,11 @@ ul.ticks li:after{content:"";position:absolute;left:9px;top:19px;width:5px;heigh
 .holdcard .acts{display:flex;gap:10px;flex-wrap:wrap}
 .holdcard .btn{padding:9px 15px;font-size:14px}
 
+.example{margin-top:56px;gap:56px}
+.example h3{font-size:26px;font-weight:700;margin-bottom:12px}
+.example p{font-size:17px;margin:0}
+.shot.light img{border:1px solid var(--line);box-shadow:var(--lift)}
+.shot.light figcaption{color:var(--faint)}
 .sec-links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
 .sec-links a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
 .sec-links a:hover{border-color:var(--blue-line)}
@@ -172,10 +175,11 @@ ul.ticks li:after{content:"";position:absolute;left:9px;top:19px;width:5px;heigh
 .sec-links b i{font-style:normal;color:var(--blue-dk)}
 .sec-links span{font-size:13.5px;color:var(--body)}
 
-.final{padding:0 0 96px}
+.final{padding:96px 0}
 .final .box{background:radial-gradient(600px 300px at 50% 0%,rgba(59,130,246,.16),transparent 70%),var(--blue-soft);border:1px solid var(--blue-line);border-radius:24px;text-align:center;padding:72px 32px}
 .final h2{font-size:44px;font-weight:700;max-width:720px;margin:0 auto}
 .final p{color:var(--body);font-size:18px;margin:18px auto 30px;max-width:540px}
+.ctas.c{justify-content:center}
 .final .mailto{display:block;margin-top:18px;font-size:14px;color:var(--faint)}
 footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;color:var(--faint)}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
@@ -184,7 +188,8 @@ footer a:hover{color:var(--ink)}
 
 /* ---------- responsive ---------- */
 @media (max-width:1000px){
-  .hero .wrap,.split,.show .wrap{grid-template-columns:1fr;gap:48px}
+  .hero .wrap,.split,.show-text{grid-template-columns:1fr;gap:48px}
+  .show-text{gap:28px}
   .flow{margin:0 auto}
   .grid4,.steps,.handles{grid-template-columns:repeat(2,1fr)}
   .proof .wrap{grid-template-columns:repeat(2,1fr)}
@@ -202,7 +207,7 @@ footer a:hover{color:var(--ink)}
   .final h2{font-size:31px}
   .final .box{padding:48px 20px;border-radius:18px}
   section,.show{padding:64px 0}
-  .final{padding:0 0 64px}
+  .final{padding:64px 0}
   .grid4,.steps,.handles,.sec-links{grid-template-columns:1fr}
   .stat{padding:24px 14px}
   .stat:nth-child(odd){padding-left:0}
@@ -211,9 +216,6 @@ footer a:hover{color:var(--ink)}
   .chk{grid-template-columns:1fr 1fr}
   .chk .match{grid-column:1/-1;justify-self:start}
   .inv{flex-wrap:wrap}
-  .tbl{font-size:13px}
-  .tbl th,.tbl td{padding:11px 9px}
-  .tbl th:nth-child(2),.tbl td:nth-child(2){display:none}
   .chip{padding:3px 7px;font-size:11.5px}
   .cmp strong{font-size:23px}
   footer a{margin-left:0;margin-right:18px}
@@ -226,7 +228,7 @@ footer a:hover{color:var(--ink)}
   <nav><div class="wrap">
     <a class="logo" href="/">Staff<span>Flow</span></a>
     <div class="links">
-      <a href="#how">How it works</a><a href="#handles">What it handles</a><a href="/security.html">Security</a>
+      <a href="#how">How it works</a><a href="#handles">What it handles</a><a href="/security.html">Security</a><a href="https://demo.staffflowpro.com">Live demo</a>
       <a class="signin" href="https://app.staffflowpro.com">Sign in</a>
       <a class="btn btn-primary" href="mailto:hello@staffflowpro.com?subject=StaffFlow%20demo">Book a demo</a>
     </div>
@@ -238,13 +240,14 @@ footer a:hover{color:var(--ink)}
       <h1>Timesheets in.<br>Invoices out.<br><span>Same day.</span></h1>
       <p class="lede">StaffFlow reads every consultant timesheet the moment it lands, checks each hour against the document, and prepares the QuickBooks invoice. You review it, click approve, and it's billed.</p>
       <div class="ctas">
-        <a class="btn btn-primary" href="mailto:hello@staffflowpro.com?subject=StaffFlow%20demo">Book a demo →</a>
-        <a class="btn btn-line" href="#how">See how it works</a>
+        <a class="btn btn-primary" href="https://demo.staffflowpro.com">Try the live demo →</a>
+        <a class="btn btn-line" href="mailto:hello@staffflowpro.com?subject=StaffFlow%20demo">Book a 15-minute demo</a>
       </div>
-      <div class="live"><span class="dot"></span>Live in production at ITG Technologies</div>
+      <div class="live"><span class="dot"></span>Live in production at ITG Technologies · the demo needs no sign-up</div>
     </div>
 
     <div class="flow" role="img" aria-label="A timesheet email arrives, its hours are checked against the document, and a QuickBooks invoice is ready for approval. Sample data.">
+      <span class="sample">Sample data</span>
       <div class="fcard f1">
         <div class="lbl"><i>1</i>Timesheet received · 9:02 AM</div>
         <div class="mail"><div class="ava">PN</div><div><b>Priya Natarajan</b><span>October timesheet attached</span></div></div>
@@ -306,29 +309,32 @@ footer a:hover{color:var(--ink)}
 </div></section>
 
 <div class="show"><div class="wrap">
-  <div>
-    <p class="eyebrow">The approval screen</p>
-    <h2>Every consultant. One screen. Your call.</h2>
-    <p>At month end you don't open forty emails. You open one list, see what's verified and what's held, and approve.</p>
+  <div class="show-text">
+    <div>
+      <p class="eyebrow">Inside StaffFlow</p>
+      <h2>Every consultant. One screen. Your call.</h2>
+      <p>At month end you don't open forty emails. You open one list, see what's ready and what's held, and approve.</p>
+    </div>
     <ul>
-      <li><b>✓</b>Verified periods are ready to bill in one click</li>
+      <li><b>✓</b>Ready periods are billed in one click</li>
       <li><b>!</b>Held periods show exactly why, and what to check</li>
       <li><b>↗</b>Each invoice lands in QuickBooks with its timesheet attached</li>
     </ul>
   </div>
-  <div class="app" role="img" aria-label="Example StaffFlow approval screen with sample data">
-    <div class="app-top"><b>Pending approval · October</b><span>Sample data</span></div>
-    <table class="tbl">
-      <thead><tr><th>Consultant</th><th>Client</th><th class="r">Hours</th><th class="r">Amount</th><th>Status</th></tr></thead>
-      <tbody>
-        <tr><td>Priya Natarajan</td><td>Northwind</td><td class="r">168.0</td><td class="r">$15,960</td><td><span class="chip ok">Verified</span></td></tr>
-        <tr><td>Daniel Reyes</td><td>Contoso</td><td class="r">160.0</td><td class="r">$13,600</td><td><span class="chip ok">Verified</span></td></tr>
-        <tr><td>Meera Shah</td><td>Fabrikam <small>· VMS</small></td><td class="r">172.0</td><td class="r">$14,104</td><td><span class="chip ok">Verified</span></td></tr>
-        <tr><td>James Okafor</td><td>Litware</td><td class="r">—</td><td class="r">—</td><td><span class="chip held">Held</span></td></tr>
-      </tbody>
-    </table>
-    <div class="app-foot"><small>3 ready · 1 held for you</small><span class="btn btn-primary">Approve 3 periods</span></div>
+  <div class="views" role="tablist" aria-label="Choose a view">
+    <button type="button" role="tab" id="t-admin" aria-controls="v-admin" aria-selected="true">Admin view</button>
+    <button type="button" role="tab" id="t-owner" aria-controls="v-owner" aria-selected="false" tabindex="-1">Owner view · read-only</button>
   </div>
+  <figure class="shot" role="tabpanel" id="v-admin" aria-labelledby="t-admin">
+    <a href="https://demo.staffflowpro.com" aria-label="Open the live demo"><img src="/img/dashboard-demo.png" width="1879" height="640" loading="lazy"
+         alt="The admin dashboard in the live demo: invoiced this month, outstanding and past-due totals, a needs-attention bar, and a pending-approvals list with an Approve button for each consultant. Sample data."></a>
+    <figcaption><b>Admin:</b> approve what's ready, see why anything is held. Live demo, sample data. <a href="https://demo.staffflowpro.com">Open it yourself →</a></figcaption>
+  </figure>
+  <figure class="shot" role="tabpanel" id="v-owner" aria-labelledby="t-owner" hidden>
+    <a href="https://demo.staffflowpro.com" aria-label="Open the live demo"><img src="/img/owner-demo.png" width="1879" height="640" loading="lazy"
+         alt="The owner's read-only view in the live demo: invoiced this month, outstanding, past due and collected totals, the invoice pipeline, recent invoices and recent payments. Sample data."></a>
+    <figcaption><b>Owner:</b> a read-only login for what's billed, owed, past due and paid. Nothing can be changed from it: the server refuses, so it's not just a hidden button. Live demo, sample data.</figcaption>
+  </figure>
 </div></div>
 
 <section id="handles"><div class="wrap">
@@ -346,6 +352,17 @@ footer a:hover{color:var(--ink)}
     <div class="h-item"><span class="ic">PAY RATES</span><h3>Payroll figures</h3><p>Pay computed from your rates and percentages, every period.</p></div>
     <div class="h-item"><span class="ic">TIME ZONE · HOLIDAYS</span><h3>Your calendar</h3><p>Your time zone and your holidays, not the server's.</p></div>
     <div class="h-item"><span class="ic">× DUPLICATES</span><h3>Never billed twice</h3><p>The same timesheet sent twice is recognised and ignored.</p></div>
+  </div>
+  <div class="split example">
+    <div>
+      <h3>A month that starts mid-week, billed correctly.</h3>
+      <p>September 2026 starts on a Tuesday and ends on a Wednesday. StaffFlow bills only September's days from the first and last weeks, and each week links to the timesheet it came from.</p>
+    </div>
+    <figure class="shot light">
+      <img src="/img/weeks-demo.png" width="696" height="346" loading="lazy"
+           alt="One consultant's September invoice in the live demo: 168 hours at $65.00 is $10,920.00, listed week by week. The first week, Aug 31 to Sep 6, and the last, Sep 28 to Oct 4, are marked 'Sep part only'. Sample data.">
+      <figcaption>From the live demo, with sample data.</figcaption>
+    </figure>
   </div>
 </div></section>
 
@@ -374,11 +391,11 @@ footer a:hover{color:var(--ink)}
 <section><div class="wrap split">
   <div>
     <p class="eyebrow">Where your data lives</p>
-    <h2>Your records stay yours.</h2>
+    <h2>Plain about what we keep.</h2>
   </div>
   <div>
-    <p>Timesheets stay in your OneDrive. Invoices stay in your QuickBooks. StaffFlow reads from your systems and writes back to them — it never becomes a second place your client records live.</p>
-    <p>We hold only what the automation needs: your configuration, the hours recorded, invoice references, and the audit trail behind them.</p>
+    <p>Timesheet files are filed in your own OneDrive, and invoices are created in your own QuickBooks.</p>
+    <p>To run billing, StaffFlow also keeps its own records: consultants, placements and rates, the hours read from each timesheet, invoices and payments, the timesheet emails it processed, and an audit trail of every change. That database is not reachable from the public internet.</p>
     <div class="sec-links">
       <a href="/security.html"><b>Security <i>→</i></b><span>How your data is protected</span></a>
       <a href="/dpa.html"><b>DPA <i>→</i></b><span>Our data processing terms</span></a>
@@ -390,7 +407,10 @@ footer a:hover{color:var(--ink)}
 <div class="final"><div class="wrap"><div class="box">
   <h2>See your own timesheets run through it.</h2>
   <p>Send us a few real timesheets. We'll show you the invoices StaffFlow would have prepared.</p>
-  <a class="btn btn-primary" href="mailto:hello@staffflowpro.com?subject=StaffFlow%20demo">Book a demo →</a>
+  <div class="ctas c">
+    <a class="btn btn-primary" href="mailto:hello@staffflowpro.com?subject=StaffFlow%20demo">Book a 15-minute demo →</a>
+    <a class="btn btn-line" href="https://demo.staffflowpro.com">Try the live demo</a>
+  </div>
   <span class="mailto">or write to <a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a></span>
 </div></div></div>
 
@@ -399,5 +419,20 @@ footer a:hover{color:var(--ink)}
   <span><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></span>
 </div></footer>
 
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.views [role="tab"]'));
+  function pick(t){
+    tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){pick(t)});
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];pick(n);n.focus();e.preventDefault();}
+    });
+  });
+})();
+</script>
 </body>
 </html>
