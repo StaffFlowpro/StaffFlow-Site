@@ -73,12 +73,12 @@ footer a:hover{color:var(--ink)}
 
 <header class="bar"><div class="in">
   <a class="brand" href="/">Staff<span>Flow</span></a>
-  <nav class="nav"><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/privacy.html" class="on" aria-current="page">Privacy</a><a href="/terms.html">Terms</a><a class="signin" href="https://app.staffflowpro.com">Sign in</a><a class="btn" href="mailto:hello@staffflowpro.com?subject=StaffFlow%20demo">Book a demo</a></nav>
+  <nav class="nav"><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/privacy.html" class="on" aria-current="page">Privacy</a><a href="/terms.html">Terms</a><a class="signin" href="https://app.staffflowpro.com">Sign in</a><a class="btn" href="https://app.staffflowpro.com/request.html">Request access</a></nav>
 </div></header>
 
 <main class="wrap">
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated 21 October 2026</p>
+  <p class="updated">Last updated 30 October 2026</p>
 
   <p>StaffFlow is timesheet-to-invoice automation software for staffing firms. This policy explains what data we handle, where it goes, and who else can see it. It is written to describe what the software actually does, rather than to reserve rights we do not use.</p>
 
@@ -96,7 +96,8 @@ footer a:hover{color:var(--ink)}
     <li><strong>Timesheet content.</strong> Documents received in the customer's mailbox, and the hours read from them.</li>
     <li><strong>Invoice and pay figures.</strong> Invoice amounts, periods, and the QuickBooks identifiers of invoices created; and the pay amounts StaffFlow computes from the customer's pay rates and percentages.</li>
     <li><strong>Operational logs.</strong> Errors, processing outcomes, and the identifiers of emails handled — used to investigate failures.</li>
-    <li><strong>Account data.</strong> The name, email address, role, password hash and, where enabled, encrypted two-step sign-in secret of each dashboard user. When someone asks to reset a password, we record the time and the network address of the request, to limit abuse.</li>
+    <li><strong>Account data.</strong> The name, email address, role, password hash and, where enabled, encrypted two-step sign-in secret of each dashboard user. When someone asks to reset a password, we record the time and the network address of the request, to limit abuse. When an admin invites someone, we keep the invited address, name and access level until the invite is accepted or cancelled.</li>
+    <li><strong>Access requests.</strong> When a firm asks for access through our request form, we keep what it sends &mdash; the contact&rsquo;s name, work email and phone, and the firm&rsquo;s name, size, email system and accounting system &mdash; to reply and arrange setup. For this data StaffFlow is the controller. The form uses Cloudflare Turnstile to tell people from automated traffic, and we keep a one-way hash of the visitor&rsquo;s network address for one day to limit abuse.</li>
   </ul>
   <p>StaffFlow does not request or store payment card details, bank account numbers, social security numbers, or tax identifiers. Where a customer enters pay rates or pay percentages, StaffFlow uses them only to compute pay figures and margin for the customer's review; it does not run payroll, make payments, or hold the bank details of anyone it pays.</p>
 
@@ -115,8 +116,8 @@ footer a:hover{color:var(--ink)}
       <tr><td>Microsoft Graph</td><td>Mailbox and OneDrive access, as authorised by the customer</td><td>Receives timesheets, files documents</td></tr>
       <tr><td>Intuit QuickBooks Online</td><td>Invoice data, as authorised by the customer</td><td>Creates invoices and attaches proof</td></tr>
       <tr><td>Railway</td><td>Application hosting, database, and workflow engine</td><td>Runs StaffFlow</td></tr>
-      <tr><td>Cloudflare</td><td>Dashboard hosting</td><td>Serves the web application</td></tr>
-      <tr><td>Resend</td><td>Operational alert emails; password-reset and password-changed emails to dashboard users (their email address and, for a reset, a single-use link)</td><td>Notifies the operator of failures; sends account emails</td></tr>
+      <tr><td>Cloudflare</td><td>Dashboard hosting; the bot check on the access-request form</td><td>Serves the web application; checks that access requests come from people</td></tr>
+      <tr><td>Resend</td><td>Operational alert emails; password-reset, password-changed and invitation emails to dashboard users (their email address, the firm&rsquo;s name and, for a reset or an invitation, a single-use link)</td><td>Notifies the operator of failures; sends account emails</td></tr>
     </tbody>
   </table>
 
@@ -137,7 +138,7 @@ footer a:hover{color:var(--ink)}
   <p>The full set of measures is described on our <a href="/security.html">Security</a> page. No system is perfectly secure. If a breach affects your data, we will tell you without undue delay, and in any event within 72 hours of becoming aware of it, and describe what happened.</p>
 
   <h2>Retention</h2>
-  <p>Configuration, hours, and invoice records are retained for as long as the customer's account is active, because they are the audit trail behind invoices already issued. Operational logs are retained while they remain useful for investigation. Records of password-reset requests are deleted after 90 days. On written request, and where no legal or accounting obligation requires otherwise, we will return or delete a customer's data within thirty days.</p>
+  <p>Configuration, hours, and invoice records are retained for as long as the customer's account is active, because they are the audit trail behind invoices already issued. Operational logs are retained while they remain useful for investigation. Records of password-reset requests are deleted after 90 days. Invites that were cancelled, accepted or never answered are deleted 90 days later. Access requests are deleted 12 months after they are sent. On written request, and where no legal or accounting obligation requires otherwise, we will return or delete a customer's data within thirty days.</p>
 
   <h2>Your rights</h2>
   <p>Depending on where you live, you may have the right to access, correct, export, or delete personal data we hold about you, and to object to or restrict its processing. Where StaffFlow acts as a processor for a customer, please direct such a request to that customer; we will assist them in answering it. Otherwise, write to <a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a>.</p>
