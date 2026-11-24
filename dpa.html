@@ -78,7 +78,7 @@ footer a:hover{color:var(--ink)}
 
 <main class="wrap">
   <h1>Data Processing Agreement</h1>
-  <p class="updated">Effective 20 October 2026 · Updated 2 November 2026</p>
+  <p class="updated">Effective 20 October 2026 · Updated 24 November 2026</p>
 
   <p>This Data Processing Agreement ("DPA") forms part of the <a href="/terms.html">Terms of Service</a> (the "Terms") between Saichandra Bandi, operating StaffFlow, Hyderabad, Telangana, India ("StaffFlow", "Processor", "we"), and the customer that uses StaffFlow (the "Customer", "you"). It sets out how StaffFlow processes Personal Data on the Customer's behalf. It applies automatically to every Customer from the date the Customer first uses StaffFlow, and requires no separate signature. A Customer that requires a countersigned copy may request one at <a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a>.</p>
 
@@ -174,10 +174,10 @@ footer a:hover{color:var(--ink)}
   <p class="cl"><b>12.2</b>Artificial intelligence does not decide what is billed. Every figure a model reads is checked by deterministic rules against the document itself, including the document's own printed totals. Where a figure cannot be verified, StaffFlow holds it for a person to review rather than proceed. No invoice is created without a person approving the period first.</p>
 
   <h2 id="s13">13. Return and deletion</h2>
-  <p class="cl"><b>13.1</b>Timesheet documents are filed into the Customer's own OneDrive, and invoices are created in the Customer's own QuickBooks company. Those records remain with the Customer when the service ends.</p>
+  <p class="cl"><b>13.1</b>Timesheet documents are filed into the Customer's own OneDrive or, where the Customer chooses StaffFlow storage, into a storage area kept separately for the Customer. Invoices are created in the Customer's own QuickBooks company. Records in the Customer's own OneDrive and QuickBooks remain with the Customer when the service ends; files in StaffFlow storage are included in the export under Section 13.2 (or, where they are too large for it, sent separately on request).</p>
   <p class="cl"><b>13.2</b>When the Customer's account is closed, StaffFlow automatically sends the Customer's administrators a complete export of the records it holds for the Customer (configuration, recorded hours, invoice references and their audit history) by a secure, single-use link. The Customer may also request an export at any time while the account is open.</p>
-  <p class="cl"><b>13.3</b>Closing starts a grace period of fourteen (14) days, during which the Customer may ask StaffFlow to reopen the account. After the grace period, StaffFlow ends its access to the Customer's QuickBooks company, stops monitoring the Customer's mailbox, and deletes the Customer's records from its live systems. The deletion is completed within thirty (30) days of closing.</p>
-  <p class="cl"><b>13.4</b>Copies in StaffFlow's database backups are never restored selectively and expire within about ninety (90) days of the deletion. If StaffFlow has to restore its systems from a backup, it repeats every deletion made since that backup was taken.</p>
+  <p class="cl"><b>13.3</b>Closing starts a grace period of fourteen (14) days, during which the Customer may ask StaffFlow to reopen the account. After the grace period, StaffFlow ends its access to the Customer's QuickBooks company, stops monitoring the Customer's mailbox, and deletes the Customer's records from its live systems, including any files in StaffFlow storage. The deletion is completed within thirty (30) days of closing.</p>
+  <p class="cl"><b>13.4</b>Copies in StaffFlow's database backups are never restored selectively and expire within about ninety (90) days of the deletion. If StaffFlow has to restore its systems from a backup, it repeats every deletion made since that backup was taken. These backups include a nightly copy of the database kept off-site with Cloudflare in the United States: it is encrypted before it leaves, to keys only StaffFlow holds, locked against change or deletion for thirty (30) days and deleted after thirty-five (35).</p>
   <p class="cl"><b>13.5</b>The deletion does not affect the Customer's own OneDrive or QuickBooks company. Files and invoices kept there remain with the Customer.</p>
   <p class="cl"><b>13.6</b>After the deletion, StaffFlow keeps only a record that the account existed and was deleted (the Customer's name, its StaffFlow ID and the relevant dates), the record of actions taken by StaffFlow's own staff, and the account's sign-in history with all names and email addresses removed.</p>
   <p class="cl"><b>13.7</b>StaffFlow may retain Personal Data only where a law to which it is subject requires it, and then only for as long as that law requires, kept confidential and processed for no other purpose. Residual copies in Sub-processors' systems are deleted under their own retention cycles described in Annex 3.</p>
@@ -221,7 +221,7 @@ footer a:hover{color:var(--ink)}
     <li><strong>Human approval and verification.</strong> As described in Section 12.2.</li>
     <li><strong>Audit trail.</strong> Approvals, corrections, discards and closures are recorded with the user, the time and the reason. Changes to placement records are kept in a change history. A figure a person corrected is marked as corrected on the record itself.</li>
     <li><strong>Monitoring.</strong> Processing failures are recorded and alerted. A scheduled check alerts if a Customer's mailbox stops delivering timesheets.</li>
-    <li><strong>Minimisation.</strong> StaffFlow requests the narrowest access to Customer Systems it needs, stores documents in the Customer's own storage rather than in StaffFlow, and does not read bank feeds, payroll or unrelated transactions in QuickBooks.</li>
+    <li><strong>Minimisation.</strong> StaffFlow requests the narrowest access to Customer Systems it needs, stores documents in the Customer's own storage unless the Customer chooses StaffFlow storage, and does not read bank feeds, payroll or unrelated transactions in QuickBooks.</li>
   </ul>
 
   <h2 id="a3">Annex 3 — Sub-processors</h2>
@@ -231,7 +231,7 @@ footer a:hover{color:var(--ink)}
       <tr><td>Railway Corp.</td><td>StaffFlow's application, database and workflow engine, and the data they hold</td><td>Hosting</td><td>For the term, then per Section 13</td></tr>
       <tr><td>OpenAI, L.L.C.</td><td>Text and tables of timesheet documents</td><td>Reading hours, dates and labels</td><td>Not used for training. May be retained up to 30 days for abuse monitoring, then deleted</td></tr>
       <tr><td>Microsoft Corporation (Azure AI Document Intelligence)</td><td>Images and PDFs of timesheet documents</td><td>Reading text and tables</td><td>Deleted automatically 24 hours after processing</td></tr>
-      <tr><td>Cloudflare, Inc.</td><td>Requests to the dashboard</td><td>Hosting the web application</td><td>Transient</td></tr>
+      <tr><td>Cloudflare, Inc.</td><td>Requests to the dashboard; the documents of a Customer that chooses StaffFlow storage; StaffFlow's encrypted database backups</td><td>Hosting the web application; storing documents (United States); off-site backup (United States)</td><td>Requests: transient. Documents: until deleted under Section 13. Backups: thirty-five (35) days</td></tr>
       <tr><td>Resend, Inc.</td><td>Operational alert emails to StaffFlow's operator, which may include a sender's email address and an error description; and account emails to the Customer's dashboard users (password-reset links, password-change confirmations and invitations to join the Customer's workspace), which contain the user's email address and, for a reset or an invitation, the Customer's name and a single-use link</td><td>Failure alerts; account emails</td><td>Per Resend's standard retention. A reset link expires 30 minutes after it is sent and works once</td></tr>
     </tbody>
   </table></div>
