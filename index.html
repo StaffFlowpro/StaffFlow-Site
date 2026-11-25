@@ -131,11 +131,7 @@ section.alt{background:var(--bg);border-top:1px solid var(--line);border-bottom:
 .show li b{color:var(--blue-hi);font-weight:600;min-width:22px}
 .chip{display:inline-block;font-size:12px;font-weight:500;padding:3px 9px;border-radius:20px}
 .held{background:var(--hold-soft);color:var(--hold)}
-.views{display:inline-flex;gap:4px;padding:4px;margin-bottom:20px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid var(--navy-line)}
-.views button{font:inherit;font-size:14.5px;font-weight:600;color:var(--on-navy-muted);background:none;border:0;border-radius:9px;padding:9px 16px;cursor:pointer}
-.views button:hover{color:#fff}
-.views button[aria-selected="true"]{background:var(--blue);color:#fff}
-.views button:focus-visible{outline:2px solid var(--blue-hi);outline-offset:2px}
+.shot-label{margin:0 0 14px;font-size:18px;font-weight:700;color:#fff}
 .shot figcaption b{color:#fff;font-weight:600}
 .shot{margin:0}
 .shot img{display:block;width:100%;height:auto;border-radius:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)}
@@ -325,19 +321,11 @@ footer a:hover{color:var(--ink)}
       <li><b>↗</b>Each invoice lands in QuickBooks with its timesheet attached</li>
     </ul>
   </div>
-  <div class="views" role="tablist" aria-label="Choose a view">
-    <button type="button" role="tab" id="t-admin" aria-controls="v-admin" aria-selected="true">Admin view</button>
-    <button type="button" role="tab" id="t-owner" aria-controls="v-owner" aria-selected="false" tabindex="-1">Owner view · read-only</button>
-  </div>
-  <figure class="shot" role="tabpanel" id="v-admin" aria-labelledby="t-admin">
+  <p class="shot-label">Dashboard</p>
+  <figure class="shot">
     <a href="https://demo.staffflowpro.com" aria-label="Open the live demo"><img src="/img/dashboard-demo.png" width="1881" height="911" loading="lazy"
-         alt="The admin dashboard in the live demo: invoiced this month, outstanding and past-due totals, a needs-attention bar, and a pending-approvals list with an Approve button for each consultant. Sample data."></a>
-    <figcaption><b>Admin:</b> approve what's ready, see why anything is held. Live demo, sample data. <a href="https://demo.staffflowpro.com">Open it yourself →</a></figcaption>
-  </figure>
-  <figure class="shot" role="tabpanel" id="v-owner" aria-labelledby="t-owner" hidden>
-    <a href="https://demo.staffflowpro.com" aria-label="Open the live demo"><img src="/img/owner-demo.png" width="1910" height="906" loading="lazy"
-         alt="The owner's read-only view in the live demo: invoiced this month, outstanding, past due and collected totals, the invoice pipeline, recent invoices and recent payments. Sample data."></a>
-    <figcaption><b>Owner:</b> a read-only login for what's billed, owed, past due and paid. Nothing can be changed from it: the server refuses, so it's not just a hidden button. Live demo, sample data.</figcaption>
+         alt="The dashboard in the live demo: invoiced this month, outstanding and past-due totals, a needs-attention bar, and a pending-approvals list with an Approve button for each consultant. Sample data."></a>
+    <figcaption>Approve what's ready, see why anything is held. Owners get their own read-only login. Live demo, sample data. <a href="https://demo.staffflowpro.com">Open it yourself →</a></figcaption>
   </figure>
 </div></div>
 
@@ -423,20 +411,5 @@ footer a:hover{color:var(--ink)}
   <span><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></span>
 </div></footer>
 
-<script>
-(function(){
-  var tabs=[].slice.call(document.querySelectorAll('.views [role="tab"]'));
-  function pick(t){
-    tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
-      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});
-  }
-  tabs.forEach(function(t,i){
-    t.addEventListener('click',function(){pick(t)});
-    t.addEventListener('keydown',function(e){
-      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];pick(n);n.focus();e.preventDefault();}
-    });
-  });
-})();
-</script>
 </body>
 </html>
