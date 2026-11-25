@@ -3,412 +3,485 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0D1728">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/img/vantusk-icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-<title>Vantusk — Timesheets in. Invoices out.</title>
-<meta name="description" content="Vantusk turns consultant timesheets into QuickBooks invoices for IT staffing firms. Every hour checked against the document. Nothing billed without your approval.">
+<title>Vantusk — The automated back office for IT staffing firms</title>
+<meta name="description" content="Vantusk runs the back office for IT staffing firms: timesheets, invoicing, payments, receivables and payroll figures. Every hour is checked against its document, and nothing is billed without your approval.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0D1728; --navy-line:#1E2B42; --on-navy:#E6ECF7; --on-navy-muted:#93A1BA;
-  --blue:#C99A2E; --blue-hi:#E6B94E; --blue-dk:#8A6514; --blue-soft:#FBF5E6; --blue-line:#EAD9AE;
-  --ink:#101828; --body:#475467; --faint:#667085; --line:#EAECF0; --line2:#D0D5DD; --bg:#F8F9FB; --card:#FFFFFF;
+  --navy:#0D1728; --navy2:#111C30; --navy3:#18233A; --navy-line:#24324C;
+  --on-navy:#E6ECF7; --on-navy-muted:#9AA8BF;
+  --gold:#C99A2E; --gold-hi:#E6B94E; --gold-dk:#8A6514; --gold-soft:#FBF5E6; --gold-line:#EAD9AE;
+  --paper:#FAF9F6; --cream:#F4F0E7; --cream-line:#E3DACA;
+  --ink:#101828; --body:#475467; --faint:#667085; --line:#EAECF0;
   --ok:#067647; --ok-soft:#ECFDF3; --ok-line:#ABEFC6; --hold:#B54708; --hold-soft:#FFFAEB;
   --font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --shadow:0 1px 2px rgba(16,24,40,.05);
-  --lift:0 24px 60px -24px rgba(16,24,40,.22),0 2px 6px rgba(16,24,40,.04);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--card);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:var(--blue-dk)}
-a:focus-visible,.btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
-h1,h2,h3{margin:0;letter-spacing:-.025em;line-height:1.1}
-.eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-dk);margin:0 0 14px}
-.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15.5px;font-weight:600;padding:13px 22px;border-radius:10px;text-decoration:none;transition:background .15s,border-color .15s}
-.btn-primary{background:var(--blue);color:#1A1407;box-shadow:0 1px 2px rgba(16,24,40,.08)}
-.btn-primary:hover{background:#B8891F}
-.btn-line{color:var(--ink);border:1px solid var(--line2);background:#fff}
-.btn-line:hover{border-color:#98A2B3}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--gold-dk)}
+a:focus-visible,.btn:focus-visible,summary:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+h1,h2,h3{margin:0;line-height:1.08}
+h2{font-size:46px;font-weight:700;letter-spacing:-.035em}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dk);margin:0 0 18px}
+.eyebrow:before{content:"";width:28px;height:1px;background:currentColor}
+.dark .eyebrow{color:var(--gold-hi)}
+.lead{font-size:18.5px;color:var(--body);margin:20px 0 0;max-width:620px}
+.dark .lead{color:#B4C0D4}
+.btn{display:inline-flex;align-items:center;gap:10px;font:inherit;font-size:15.5px;font-weight:600;padding:14px 22px;border-radius:10px;text-decoration:none;transition:background .15s,border-color .15s,color .15s}
+.btn-gold{background:var(--gold);color:#1A1407}
+.btn-gold:hover{background:var(--gold-hi)}
+.btn-ghost{color:#fff;border:1px solid rgba(255,255,255,.28)}
+.btn-ghost:hover{border-color:var(--gold-hi);color:var(--gold-hi)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:#22314D}
+.btn-line{color:var(--navy);border:1px solid rgba(13,23,40,.35)}
+.btn-line:hover{border-color:var(--navy)}
+section{padding:112px 0}
+.dark{background:var(--navy);color:var(--on-navy)}
+.dark h2{color:#fff}
 
-/* ---------- top: nav + hero ---------- */
-.top{background:radial-gradient(900px 520px at 88% -10%,rgba(201,154,46,.13),transparent 60%),
-                radial-gradient(700px 420px at -10% 110%,rgba(230,185,78,.08),transparent 60%),var(--card);border-bottom:1px solid var(--line)}
-nav{padding:22px 0}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo-svg{display:block;width:auto}
-.logo{display:block;font-size:24px;font-weight:600;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
-.logo span{color:var(--blue-dk)}
-.links{display:flex;gap:28px;align-items:center;font-size:15px}
-.links a{color:var(--body);text-decoration:none}
-.links a:hover{color:var(--ink)}
-.links .signin{color:var(--ink);font-weight:500}
-.links .btn{padding:9px 16px;font-size:14.5px;color:#1A1407}
+/* header */
+header.site{position:sticky;top:0;z-index:20;background:rgba(13,23,40,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+header.site .wrap{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:block;line-height:0}
+.links{display:flex;gap:30px;font-size:15px}
+.links a{color:#C9D2E0;text-decoration:none}
+.links a:hover{color:var(--gold-hi)}
+.right{display:flex;align-items:center;gap:22px}
+.right .signin{color:#C9D2E0;text-decoration:none;font-size:15px}
+.right .signin:hover{color:var(--gold-hi)}
+.right .btn{padding:10px 18px;font-size:14.5px;white-space:nowrap}
 
-.hero{padding:56px 0 88px}
-.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.hero h1{font-size:64px;font-weight:700;letter-spacing:-.04em;line-height:1.03}
-.hero h1 span{color:var(--blue-dk)}
-.lede{font-size:19px;color:var(--body);margin:24px 0 32px;max-width:520px}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:96px 0 104px;background:radial-gradient(900px 560px at 80% 30%,rgba(201,154,46,.16),transparent 60%),var(--navy)}
+.hero:after{content:"";position:absolute;width:760px;height:760px;border:1px solid rgba(201,154,46,.10);border-radius:50%;right:-420px;top:-420px;box-shadow:0 0 0 80px rgba(201,154,46,.025),0 0 0 160px rgba(201,154,46,.015);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:56px;font-weight:800;letter-spacing:-.045em;line-height:1.02;color:#fff}
+.hero h1 em{font-style:normal;color:var(--gold-hi)}
+.hero .lead{font-size:19px;margin:26px 0 34px;max-width:540px}
 .ctas{display:flex;gap:12px;flex-wrap:wrap}
-.live{margin-top:28px;font-size:13.5px;color:var(--faint);display:flex;align-items:center;gap:10px}
-.dot{width:8px;height:8px;border-radius:50%;background:#17B26A;box-shadow:0 0 0 4px rgba(23,178,106,.15)}
+.live{margin-top:30px;font-size:14px;color:var(--on-navy-muted);display:flex;align-items:center;gap:10px}
+.dot{width:8px;height:8px;border-radius:50%;background:#17B26A;box-shadow:0 0 0 4px rgba(23,178,106,.18);flex:0 0 auto}
+.frame{position:relative;width:128%;transform:perspective(1600px) rotateY(-7deg) rotateX(2deg);transform-origin:left center}
+.frame:before{content:"";position:absolute;inset:-16px 6% 6% -4%;background:rgba(201,154,46,.16);filter:blur(48px);border-radius:30px}
+.browser{position:relative;background:#F2F4F7;border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:8px;box-shadow:0 40px 90px rgba(0,0,0,.5)}
+.bar{display:flex;gap:6px;align-items:center;height:22px;padding:0 6px;font-size:11px;color:#8791A0}
+.bar i{width:8px;height:8px;border-radius:50%;background:#D0D5DD}
+.bar span{margin-left:10px}
+.browser img{display:block;width:100%;height:auto;border-radius:8px}
+.float{position:absolute;left:-28px;bottom:-26px;background:#fff;color:var(--ink);border-radius:12px;padding:14px 18px;box-shadow:0 18px 40px rgba(0,0,0,.35);font-size:13.5px;max-width:270px}
+.float b{display:block;color:var(--ok);font-size:14.5px;margin-bottom:2px}
 
-/* hero flow: email → checked → invoice */
-.flow{position:relative;display:grid;gap:0;max-width:500px;margin-left:auto}
-.fcard{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--lift);padding:16px 18px;position:relative;z-index:1}
-.fcard .lbl{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
-.fcard .lbl i{font-style:normal;width:20px;height:20px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;background:linear-gradient(145deg,#0D1728,#8A6514)}
-.f1{margin-right:56px}
-.f2{margin-left:28px;margin-right:28px}
-.f3{margin-left:56px}
-.link{height:30px;margin-left:50%;border-left:2px dashed var(--blue-line);position:relative}
-.link:after{content:"";position:absolute;left:-6px;bottom:-2px;border:5px solid transparent;border-top:7px solid var(--blue-line)}
-.mail{display:flex;gap:12px;align-items:center}
-.ava{width:34px;height:34px;border-radius:50%;background:#E0EAFF;color:#3538CD;font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.mail b{display:block;font-size:14px;font-weight:600}
-.mail span{display:block;font-size:13px;color:var(--faint)}
-.att{margin-top:12px;display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:13px;background:#FCFCFD}
-.att em{font-style:normal;font-size:10.5px;font-weight:700;color:#fff;background:#D92D20;border-radius:4px;padding:2px 5px}
-.att small{margin-left:auto;color:var(--faint)}
-.chk{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:center}
-.chk small{display:block;font-size:12px;color:var(--faint)}
-.chk strong{font-size:22px;font-weight:700;letter-spacing:-.02em}
-.match{font-size:12.5px;font-weight:600;color:var(--ok);background:var(--ok-soft);border:1px solid var(--ok-line);border-radius:20px;padding:4px 10px;white-space:nowrap}
-.inv{display:flex;justify-content:space-between;align-items:center;gap:14px}
-.inv b{display:block;font-size:14px;font-weight:600}
-.inv span{display:block;font-size:13px;color:var(--faint)}
-.inv strong{display:block;font-size:24px;font-weight:700;letter-spacing:-.02em;margin-top:2px}
-.inv .btn{padding:9px 14px;font-size:13.5px;white-space:nowrap;color:#fff;display:inline-flex}
-.flow .sample{position:absolute;top:-30px;right:0;font-size:11.5px;font-weight:500;color:var(--faint);background:#fff;border:1px solid var(--line);border-radius:20px;padding:2px 10px}
-.qb{font-style:normal;width:20px;height:20px;border-radius:50%;background:#2CA01C !important}
-
-/* ---------- proof ---------- */
-.proof{background:var(--bg);border-bottom:1px solid var(--line)}
+/* proof strip */
+.proof{background:var(--navy2);border-top:1px solid rgba(255,255,255,.07)}
 .proof .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
-.stat{padding:34px 26px;border-left:1px solid var(--line)}
+.stat{padding:34px 28px;border-left:1px solid var(--navy-line)}
 .stat:first-child{border-left:0;padding-left:0}
-.stat b{display:block;font-size:38px;font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1}
-.stat b span{color:var(--blue-dk)}
-.stat p{margin:10px 0 0;font-size:14.5px;color:var(--body);line-height:1.5}
+.stat b{display:block;font-size:38px;font-weight:700;letter-spacing:-.03em;color:#fff;line-height:1}
+.stat b span{color:var(--gold-hi)}
+.stat p{margin:10px 0 0;font-size:14.5px;color:var(--on-navy-muted);line-height:1.5}
 
-/* ---------- sections ---------- */
-section{padding:96px 0}
-section.alt{background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.head{max-width:660px;margin-bottom:48px}
-.head.c{margin-left:auto;margin-right:auto;text-align:center}
-.head h2,.split h2{font-size:42px;font-weight:700}
-.head p{font-size:18px;color:var(--body);margin:16px 0 0}
+/* problem */
+.split-head{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;margin-bottom:56px}
+.split-head .lead{margin:0}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--shadow)}
-.card .q{font-size:16px;font-weight:500;color:var(--ink);line-height:1.45;margin:0 0 16px;padding-left:12px;border-left:3px solid var(--blue)}
-.card h3{font-size:16.5px;font-weight:600;margin-bottom:6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px}
+.card .q{font-size:16px;font-weight:500;color:var(--ink);line-height:1.45;margin:0 0 18px;padding-left:12px;border-left:3px solid var(--gold)}
+.card h3{font-size:17px;font-weight:600;margin-bottom:6px}
 .card p{margin:0;font-size:15px;color:var(--body);line-height:1.55}
 
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;box-shadow:var(--shadow)}
-.step .k{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;
-         color:#fff;background:linear-gradient(145deg,#0D1728,#8A6514);margin-bottom:16px}
-.step h3{font-size:17.5px;font-weight:600;margin-bottom:6px}
-.step p{margin:0;font-size:15px;color:var(--body)}
-.step.you{border-color:var(--blue-line);background:var(--blue-soft)}
-.step.you .tag{position:absolute;top:24px;right:20px;font-size:11.5px;font-weight:600;color:var(--blue-dk);background:#fff;border:1px solid var(--blue-line);border-radius:20px;padding:2px 9px}
+/* workflow */
+.workflow{background:var(--navy2)}
+.track{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.18);margin-top:64px}
+.wf{padding:32px 28px 8px 0;position:relative}
+.wf:before{content:"";position:absolute;top:-7px;left:0;width:13px;height:13px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px var(--navy2),0 0 0 6px rgba(201,154,46,.45)}
+.wf .n{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--gold-hi)}
+.wf h3{font-size:21px;font-weight:700;color:#fff;margin:12px 0 10px}
+.wf p{margin:0;font-size:15.5px;color:#AEB9C8;max-width:250px}
+.wf.you{padding-left:24px;border-left:1px solid rgba(201,154,46,.4);background:linear-gradient(180deg,rgba(201,154,46,.13),transparent)}
+.wf.you:before{left:-7px}
 
-/* ---------- the one dark band: the product ---------- */
-.show{background:radial-gradient(760px 420px at 80% 0%,rgba(201,154,46,.26),transparent 62%),
-                 radial-gradient(560px 340px at 0% 100%,rgba(230,185,78,.12),transparent 60%),var(--navy);color:var(--on-navy);padding:104px 0}
-.show .wrap{display:block}
-.show-text{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;margin-bottom:48px}
-.show .eyebrow{color:var(--blue-hi)}
-.show h2{font-size:42px;font-weight:700;color:#fff}
-.show p{font-size:18px;color:#B4C0D4;margin-bottom:0}
-.show ul{list-style:none;padding:0;margin:0}
-.show li{padding:12px 0;border-top:1px solid var(--navy-line);font-size:16px;color:var(--on-navy);display:flex;gap:12px}
-.show li b{color:var(--blue-hi);font-weight:600;min-width:22px}
-.chip{display:inline-block;font-size:12px;font-weight:500;padding:3px 9px;border-radius:20px}
-.held{background:var(--hold-soft);color:var(--hold)}
-.shot-label{margin:0 0 14px;font-size:18px;font-weight:700;color:#fff}
-.shot figcaption b{color:#fff;font-weight:600}
-.shot{margin:0}
-.shot img{display:block;width:100%;height:auto;border-radius:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)}
-.shot figcaption{margin-top:14px;font-size:13.5px;color:var(--on-navy-muted)}
-.shot figcaption a{color:var(--blue-hi);text-decoration:none}
+/* product */
+.product{background:#fff}
+.stage{background:var(--cream);border:1px solid var(--cream-line);border-radius:20px;padding:36px;position:relative;overflow:hidden}
+.stage:before{content:"";position:absolute;width:420px;height:420px;border:1px solid #D9CCAA;border-radius:50%;right:-170px;top:-250px;box-shadow:0 0 0 60px rgba(201,154,46,.05),0 0 0 120px rgba(201,154,46,.03)}
+.stage .browser{border-color:#D8DCE3;box-shadow:0 30px 60px -20px rgba(16,24,40,.25);max-width:1060px;margin:0 auto}
+.stage-cap{display:flex;justify-content:space-between;gap:20px;margin:18px auto 0;max-width:1060px;font-size:14.5px;color:var(--body)}
+.stage-cap a{text-decoration:none;font-weight:600}
+.feat{margin-top:56px}
+.feat-text{max-width:640px;margin-bottom:22px}
+.feat-text h3{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+.feat-text p{margin:0;font-size:17px;color:var(--body)}
+.feat .browser{border-color:#D8DCE3;box-shadow:0 24px 50px -20px rgba(16,24,40,.22)}
+.feat.two{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.feat.two .feat-text{margin:0}
+.dialog{background:var(--cream);border:1px solid var(--cream-line);border-radius:20px;padding:40px;display:flex;justify-content:center}
+.dialog img{display:block;width:100%;max-width:529px;height:auto;border-radius:12px;box-shadow:0 30px 60px -20px rgba(16,24,40,.35)}
 
+/* modules */
+.modules{background:var(--cream)}
+.rows{border-top:1px solid var(--cream-line)}
+.row{display:grid;grid-template-columns:70px 1fr 1.15fr;gap:28px;align-items:center;padding:26px 4px;border-bottom:1px solid var(--cream-line)}
+.row .i{font-size:13px;font-weight:700;color:var(--gold-dk);letter-spacing:.06em}
+.row h3{font-size:21px;font-weight:700;color:var(--navy)}
+.row p{margin:0;font-size:15.5px;color:var(--body)}
+.row.soon h3,.row.soon p,.row.soon .i{color:#98A2B3}
+.row.soon h3 small{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--gold-dk);background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:20px;padding:2px 9px;margin-left:10px;vertical-align:middle}
+
+/* edge cases */
 .handles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.h-item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
-.h-item .ic{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.03em;color:var(--blue-dk);background:var(--blue-soft);border-radius:6px;padding:3px 8px;margin-bottom:14px}
+.h-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}
+.h-item .ic{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;color:var(--gold-dk);background:var(--gold-soft);border-radius:6px;padding:3px 8px;margin-bottom:14px}
 .h-item h3{font-size:16.5px;font-weight:600;margin-bottom:6px}
 .h-item p{margin:0;font-size:14.5px;color:var(--body);line-height:1.5}
+.edge{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center;margin-top:88px}
+.edge h3{font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1.12}
+.edge .txt{font-size:17px;color:var(--body)}
+.edge .note{border-left:2px solid var(--gold);padding:6px 0 6px 16px;font-size:15px;color:var(--gold-dk);font-weight:600;margin-top:24px}
+.cal{background:var(--navy);border-radius:16px;padding:28px;color:#fff;box-shadow:0 24px 60px -20px rgba(13,23,40,.45)}
+.cal-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
+.cal-head strong{font-size:18px}
+.cal-head span{font-size:13px;color:var(--on-navy-muted)}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;text-align:center;font-size:12px;color:var(--on-navy-muted);margin-bottom:7px}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-bottom:7px;position:relative}
+.wk span{background:var(--navy3);border-radius:7px;padding:11px 0;text-align:center;font-size:14px;color:#D8DFE8}
+.wk span.out{background:transparent;border:1px dashed #33425E;color:#64738C}
+.wk.split{outline:2px solid var(--gold);outline-offset:3px;border-radius:9px;margin:12px 0 16px}
+.wk.split span:not(.out){background:rgba(201,154,46,.20);color:#F1D68E}
+.wk-note{font-size:13px;color:var(--gold-hi);margin:-6px 0 14px}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;font-size:13px;color:var(--on-navy-muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 
-.split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.split p{font-size:18px;color:var(--body)}
-ul.ticks{list-style:none;padding:0;margin:26px 0 0}
-ul.ticks li{padding:12px 0 12px 34px;border-top:1px solid var(--line);position:relative;font-size:16.5px;color:var(--ink)}
-ul.ticks li:before{content:"";position:absolute;left:2px;top:15px;width:20px;height:20px;border-radius:50%;background:var(--ok-soft)}
-ul.ticks li:after{content:"";position:absolute;left:9px;top:19px;width:5px;height:9px;border:solid var(--ok);border-width:0 2px 2px 0;transform:rotate(45deg)}
-.holdcard{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--lift);padding:24px}
+/* control */
+.control .wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+ul.ticks{list-style:none;padding:0;margin:30px 0 0}
+ul.ticks li{padding:14px 0 14px 36px;border-top:1px solid var(--navy-line);position:relative;font-size:16.5px;color:var(--on-navy)}
+ul.ticks li:before{content:"✓";position:absolute;left:0;top:14px;width:22px;height:22px;border-radius:50%;background:rgba(201,154,46,.18);color:var(--gold-hi);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.holdcard{background:#fff;color:var(--ink);border-radius:16px;padding:26px;box-shadow:0 30px 70px -20px rgba(0,0,0,.55)}
 .holdcard .t{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px}
 .holdcard .t b{font-size:16px;font-weight:600}
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;background:var(--hold-soft);color:var(--hold)}
 .cmp{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:12px;margin:0 0 16px}
 .cmp div{padding:16px}
 .cmp div+div{border-left:1px solid var(--line)}
-.cmp small{display:block;font-size:12px;color:var(--faint);margin-bottom:4px}
+.cmp small{display:block;font-size:12.5px;color:var(--faint);margin-bottom:4px}
 .cmp strong{font-size:28px;font-weight:700;letter-spacing:-.02em}
 .cmp .bad strong{color:var(--hold)}
-.holdcard p{font-size:14.5px;color:var(--body);margin:0 0 18px}
-.holdcard .acts{display:flex;gap:10px;flex-wrap:wrap}
-.holdcard .btn{padding:9px 15px;font-size:14px}
+.holdcard p{font-size:15px;color:var(--body);margin:0 0 18px}
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.acts span{font-size:14px;font-weight:600;padding:9px 15px;border-radius:9px}
+.acts .a1{background:var(--gold);color:#1A1407}
+.acts .a2{border:1px solid #D0D5DD}
+.sample{font-size:12px;color:var(--faint);margin-top:14px}
 
-.example{margin-top:56px;gap:56px}
-.example h3{font-size:26px;font-weight:700;margin-bottom:12px}
-.example p{font-size:17px;margin:0}
-.shot.light img{border:1px solid var(--line);box-shadow:var(--lift)}
-.shot.light figcaption{color:var(--faint)}
-.sec-links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
-.sec-links a{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
-.sec-links a:hover{border-color:var(--blue-line)}
-.sec-links b{font-size:15.5px;font-weight:600;display:flex;justify-content:space-between;margin-bottom:4px}
-.sec-links b i{font-style:normal;color:var(--blue-dk)}
-.sec-links span{font-size:13.5px;color:var(--body)}
+/* security */
+.sec .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px}
+.sec p.body{font-size:17px;color:var(--body)}
+.points{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.point{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}
+.point b{display:block;font-size:16.5px;color:var(--navy);margin-bottom:6px}
+.point span{font-size:15px;color:var(--body)}
+.sec-links{display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;font-size:15.5px}
+.sec-links a{text-decoration:none;font-weight:600}
 
-.final{padding:96px 0}
-.final .box{background:radial-gradient(600px 300px at 50% 0%,rgba(201,154,46,.16),transparent 70%),var(--blue-soft);border:1px solid var(--blue-line);border-radius:24px;text-align:center;padding:72px 32px}
-.final h2{font-size:44px;font-weight:700;max-width:720px;margin:0 auto}
-.final p{color:var(--body);font-size:18px;margin:18px auto 30px;max-width:540px}
-.ctas.c{justify-content:center}
-.final .mailto{display:block;margin-top:18px;font-size:14px;color:var(--faint)}
-footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13.5px;color:var(--faint)}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
-footer a{color:var(--faint);text-decoration:none;margin-left:22px}
-footer a:hover{color:var(--ink)}
+/* faq */
+.faq{background:#fff}
+.faq .wrap{display:grid;grid-template-columns:.7fr 1.3fr;gap:72px}
+details{border-bottom:1px solid var(--line)}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:22px 40px 22px 0;font-size:18px;font-weight:600;color:var(--navy);position:relative}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";position:absolute;right:4px;top:18px;font-size:24px;font-weight:400;color:var(--gold-dk)}
+details[open] summary:after{content:"−"}
+details p{margin:0 0 22px;font-size:16px;color:var(--body);max-width:680px}
 
-/* ---------- responsive ---------- */
+/* final */
+.final{background:var(--gold);padding:88px 0}
+.final .wrap{display:flex;align-items:center;justify-content:space-between;gap:40px}
+.final .eyebrow{color:#5D481E}
+.final h2{color:#111B2B;max-width:720px}
+.final .txt{font-size:17.5px;color:#3B3322;margin:16px 0 0;max-width:600px}
+.final .ctas{flex-direction:column;align-items:stretch;min-width:240px}
+.final .btn-line{border-color:rgba(17,27,43,.45);color:#111B2B;justify-content:center}
+.final .btn-navy{justify-content:center}
+
+/* footer */
+footer{background:#080F1C;color:#fff;padding:64px 0 32px}
+.foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px}
+.foot p{font-size:14.5px;color:#98A5B7;max-width:290px;margin:18px 0 0}
+.foot h4{font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-hi);margin:0 0 16px}
+.foot a{display:block;color:#AAB5C5;text-decoration:none;font-size:14.5px;margin:10px 0}
+.foot a:hover{color:var(--gold-hi)}
+.foot-bottom{border-top:1px solid #1F2A3D;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13.5px;color:#8290A3}
+
+/* responsive */
 @media (max-width:1000px){
-  .hero .wrap,.split,.show-text{grid-template-columns:1fr;gap:48px}
-  .show-text{gap:28px}
-  .flow{margin:0 auto}
-  .grid4,.steps,.handles{grid-template-columns:repeat(2,1fr)}
+  h2{font-size:38px}
+  .feat.two{grid-template-columns:1fr;gap:24px}
+  .hero .wrap,.split-head,.edge,.control .wrap,.sec .wrap,.faq .wrap{grid-template-columns:1fr;gap:44px}
+  .hero h1{font-size:52px}
+  .frame{transform:none;width:100%}
+  .grid4,.handles{grid-template-columns:repeat(2,1fr)}
+  .track{grid-template-columns:repeat(2,1fr);row-gap:40px}
   .proof .wrap{grid-template-columns:repeat(2,1fr)}
   .stat:nth-child(3){border-left:0;padding-left:0}
-  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .stat:nth-child(n+3){border-top:1px solid var(--navy-line)}
+  .links{display:none}
+  .final .wrap{display:block}
+  .final .ctas{flex-direction:row;margin-top:28px}
+  .foot{grid-template-columns:1fr 1fr 1fr}
+  .foot>div:first-child{grid-column:1/-1}
 }
 @media (max-width:640px){
-  .wrap{padding:0 16px}
-  .links a:not(.btn):not(.signin){display:none}
-  .links{gap:16px}
-  .hero{padding:32px 0 64px}
-  .hero h1{font-size:42px}
-  .lede{font-size:17px}
-  .head h2,.split h2,.show h2{font-size:31px}
-  .final h2{font-size:31px}
-  .final .box{padding:48px 20px;border-radius:18px}
-  section,.show{padding:64px 0}
-  .final{padding:64px 0}
-  .grid4,.steps,.handles,.sec-links{grid-template-columns:1fr}
-  .stat{padding:24px 14px}
-  .stat:nth-child(odd){padding-left:0}
-  .stat b{font-size:30px}
-  .f1,.f2,.f3{margin-left:0;margin-right:0}
-  .chk{grid-template-columns:1fr 1fr}
-  .chk .match{grid-column:1/-1;justify-self:start}
-  .inv{flex-wrap:wrap}
-  .chip{padding:3px 7px;font-size:11.5px}
-  .cmp strong{font-size:23px}
-  footer a{margin-left:0;margin-right:18px}
+  .wrap{padding:0 18px}
+  section{padding:72px 0}
+  h2{font-size:31px}
+  .hero{padding:56px 0 72px}
+  .hero h1{font-size:40px}
+  .right .signin{display:none}
+  .right .btn{padding:9px 14px;font-size:13.5px}
+  .logo svg{height:20px}
+  .grid4,.handles,.track,.points,.feat.two{grid-template-columns:1fr}
+  .dialog{padding:16px}
+  .track{border:0;margin-top:36px;gap:28px}
+  .wf{padding:0 0 0 24px;border-left:1px solid rgba(255,255,255,.18)}
+  .wf:before{top:2px;left:-7px}
+  .stage{padding:14px}
+  .row{grid-template-columns:36px 1fr;gap:6px 14px}
+  .row p{grid-column:2}
+  .float{position:static;margin-top:16px;max-width:none}
+  .cal{padding:16px}
+  .days,.wk{gap:4px}
+  .wk span{padding:8px 0;font-size:12.5px}
+  .stage-cap{display:block}
+  .foot{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
 
-<div class="top">
-  <nav><div class="wrap">
-    <a class="logo" href="/" aria-label="Vantusk home"><svg class="logo-svg" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="-4 -64 1933 280" role="img" aria-label="Vantusk"><path d="M0.0 0.0 L105.0 0.0 L237.5 212.0 L132.5 212.0 Z" fill="#0D1728"/><path d="M278.0 -60.0 L367.0 -60.0 L223.9 152.6 L181.0 84.1 Z" fill="#C99A2E"/><g transform="translate(296 0)"><path d="M0.0 212.0 L133.0 0.0 L184.0 0.0 L318.0 212.0 L250.0 212.0 L161.0 67.0 L68.0 212.0 Z" fill="#0D1728"/><path d="M107.0 212.0 L161.0 126.0 L212.0 212.0 Z" fill="#C99A2E"/></g><g transform="translate(651 0)"><path d="M0.0 212.0 L0.0 0.0 L50.0 0.0 L177.0 126.0 L177.0 0.0 L234.0 0.0 L234.0 212.0 L182.0 212.0 L57.0 89.0 L57.0 212.0 Z" fill="#0D1728"/></g><g transform="translate(925 0)"><path d="M0.0 0.0 L210.0 0.0 L210.0 47.0 L136.0 47.0 L136.0 212.0 L78.0 212.0 L78.0 47.0 L0.0 47.0 Z" fill="#0D1728"/></g><g transform="translate(1173 0)"><path d="M28.5 0 V113.5 A83.5 70 0 0 0 195.5 113.5 V0" fill="none" stroke="#0D1728" stroke-width="57"/></g><g transform="translate(1430 0)"><g transform="translate(14 0) scale(1.62 1.57)"><path d="M120 24 C102 15 84 13 64 13 C32 13 15 24 15 41 C15 58 32 63 64 66 C100 69 117 78 117 96 C117 114 99 122 64 122 C42 122 22 117 9 110" fill="none" stroke="#0D1728" stroke-width="34"/></g></g><g transform="translate(1688 0)"><clipPath id="k0D1728"><rect width="237" height="212"/></clipPath><g clip-path="url(#k0D1728)"><rect width="57" height="212" fill="#0D1728"/><path d="M22 175 L222 -12" stroke="#0D1728" stroke-width="60"/><path d="M90 98 L250 250" stroke="#0D1728" stroke-width="62"/></g></g></svg></a>
-    <div class="links">
-      <a href="#how">How it works</a><a href="#handles">What it handles</a><a href="/security.html">Security</a><a href="https://demo.staffflowpro.com">Live demo</a>
-      <a class="signin" href="https://app.staffflowpro.com">Sign in</a>
-      <a class="btn btn-primary" href="https://app.staffflowpro.com/request.html">Request access</a>
-    </div>
-  </div></nav>
+<header class="site"><div class="wrap">
+  <a class="logo" href="/" aria-label="Vantusk home"><svg class="logo-svg" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="-4 -64 1933 280" role="img" aria-label="Vantusk"><path d="M0.0 0.0 L105.0 0.0 L237.5 212.0 L132.5 212.0 Z" fill="#F7F9FC"/><path d="M278.0 -60.0 L367.0 -60.0 L223.9 152.6 L181.0 84.1 Z" fill="#E6B94E"/><g transform="translate(296 0)"><path d="M0.0 212.0 L133.0 0.0 L184.0 0.0 L318.0 212.0 L250.0 212.0 L161.0 67.0 L68.0 212.0 Z" fill="#F7F9FC"/><path d="M107.0 212.0 L161.0 126.0 L212.0 212.0 Z" fill="#E6B94E"/></g><g transform="translate(651 0)"><path d="M0.0 212.0 L0.0 0.0 L50.0 0.0 L177.0 126.0 L177.0 0.0 L234.0 0.0 L234.0 212.0 L182.0 212.0 L57.0 89.0 L57.0 212.0 Z" fill="#F7F9FC"/></g><g transform="translate(925 0)"><path d="M0.0 0.0 L210.0 0.0 L210.0 47.0 L136.0 47.0 L136.0 212.0 L78.0 212.0 L78.0 47.0 L0.0 47.0 Z" fill="#F7F9FC"/></g><g transform="translate(1173 0)"><path d="M28.5 0 V113.5 A83.5 70 0 0 0 195.5 113.5 V0" fill="none" stroke="#F7F9FC" stroke-width="57"/></g><g transform="translate(1430 0)"><g transform="translate(14 0) scale(1.62 1.57)"><path d="M120 24 C102 15 84 13 64 13 C32 13 15 24 15 41 C15 58 32 63 64 66 C100 69 117 78 117 96 C117 114 99 122 64 122 C42 122 22 117 9 110" fill="none" stroke="#F7F9FC" stroke-width="34"/></g></g><g transform="translate(1688 0)"><clipPath id="kNav"><rect width="237" height="212"/></clipPath><g clip-path="url(#kNav)"><rect width="57" height="212" fill="#F7F9FC"/><path d="M22 175 L222 -12" stroke="#F7F9FC" stroke-width="60"/><path d="M90 98 L250 250" stroke="#F7F9FC" stroke-width="62"/></g></g></svg></a>
+  <nav class="links" aria-label="Main">
+    <a href="#how">How it works</a><a href="#modules">Platform</a><a href="#control">Accuracy</a><a href="#security">Security</a><a href="#faq">FAQ</a>
+  </nav>
+  <div class="right">
+    <a class="signin" href="https://app.staffflowpro.com">Sign in</a>
+    <a class="btn btn-gold" href="https://demo.staffflowpro.com">Try the live demo →</a>
+  </div>
+</div></header>
 
-  <header class="hero"><div class="wrap">
-    <div>
-      <p class="eyebrow">For IT staffing firms on QuickBooks</p>
-      <h1>Timesheets in.<br>Invoices out.<br><span>Same day.</span></h1>
-      <p class="lede">Vantusk reads every consultant timesheet the moment it lands, checks each hour against the document, and prepares the QuickBooks invoice. You review it, click approve, and it's billed.</p>
-      <div class="ctas">
-        <a class="btn btn-primary" href="https://demo.staffflowpro.com">Try the live demo →</a>
-        <a class="btn btn-line" href="https://app.staffflowpro.com/request.html">Request access</a>
-      </div>
-      <div class="live"><span class="dot"></span>Live in production at ITG Technologies · the demo needs no sign-up</div>
+<main>
+<section class="hero dark"><div class="wrap">
+  <div>
+    <p class="eyebrow">For IT staffing firms on QuickBooks</p>
+    <h1>Your staffing back office, automated. <em>Every number checked.</em></h1>
+    <p class="lead">Timesheets, invoicing, payments, receivables and payroll figures in one place. Vantusk checks every hour against the source document and prepares each QuickBooks invoice for your one-click approval.</p>
+    <div class="ctas">
+      <a class="btn btn-gold" href="https://demo.staffflowpro.com">Try the live demo →</a>
+      <a class="btn btn-ghost" href="https://app.staffflowpro.com/request.html">Request access</a>
     </div>
-
-    <div class="flow" role="img" aria-label="A timesheet email arrives, its hours are checked against the document, and a QuickBooks invoice is ready for approval. Sample data.">
-      <span class="sample">Sample data</span>
-      <div class="fcard f1">
-        <div class="lbl"><i>1</i>Timesheet received · 9:02 AM</div>
-        <div class="mail"><div class="ava">MB</div><div><b>Michael Brooks</b><span>October timesheet attached</span></div></div>
-        <div class="att"><em>PDF</em>Oct_2026_timesheet.pdf<small>Filed to OneDrive</small></div>
-      </div>
-      <div class="link"></div>
-      <div class="fcard f2">
-        <div class="lbl"><i>2</i>Hours checked · 9:02 AM</div>
-        <div class="chk">
-          <div><small>Document total</small><strong>168.0 h</strong></div>
-          <div><small>Daily lines add to</small><strong>168.0 h</strong></div>
-          <span class="match">✓ Match</span>
-        </div>
-      </div>
-      <div class="link"></div>
-      <div class="fcard f3">
-        <div class="lbl"><i class="qb">qb</i>Invoice ready · 9:03 AM</div>
-        <div class="inv">
-          <div><b>Northwind · October</b><span>168.0 h × $95.00</span><strong>$15,960.00</strong></div>
-          <span class="btn btn-primary">Approve</span>
-        </div>
-      </div>
+    <div class="live"><span class="dot"></span>Live in production at ITG Technologies · the demo needs no sign-up</div>
+  </div>
+  <div class="frame">
+    <div class="browser">
+      <div class="bar"><i></i><i></i><i></i><span>Vantusk · Dashboard</span></div>
+      <img src="/img/dashboard-demo.png" width="1881" height="911" alt="The Vantusk dashboard in the live demo: invoiced this month, outstanding, past due and collected totals, and four periods ready to approve. Sample data.">
     </div>
-  </div></header>
-</div>
+    <div class="float"><b>✓ Nothing is billed without you</b>Every invoice waits for a person's approval.</div>
+  </div>
+</div></section>
 
-<div class="proof"><div class="wrap">
-  <div class="stat"><b>56</b><p>consultants billed through Vantusk at ITG</p></div>
-  <div class="stat"><b>5</b><p>timesheet formats — PDF, Excel, Word, photo, email</p></div>
-  <div class="stat"><b>100<span>%</span></b><p>of the hours Vantusk reads are traced back to the document they came from</p></div>
+<div class="proof dark"><div class="wrap">
+  <div class="stat"><b>~60</b><p>consultants billed through Vantusk at ITG</p></div>
+  <div class="stat"><b>5</b><p>timesheet formats: PDF, Excel, Word, photo, email</p></div>
+  <div class="stat"><b>100<span>%</span></b><p>of billed hours traced back to the document they came from</p></div>
   <div class="stat"><b>0</b><p>invoices created without a person's approval</p></div>
 </div></div>
 
 <section><div class="wrap">
-  <div class="head">
-    <p class="eyebrow">The month-end problem</p>
-    <h2>Billing shouldn't take two weeks.</h2>
-    <p>Every staffing firm knows the routine. Timesheets arrive in a dozen formats, someone retypes them, and the invoice goes out late — or wrong.</p>
+  <div class="split-head">
+    <div><p class="eyebrow">The month-end problem</p><h2>Billing shouldn't take two weeks.</h2></div>
+    <p class="lead">Every staffing firm knows the routine. Timesheets arrive in a dozen formats, someone retypes them, and the invoice goes out late, or wrong.</p>
   </div>
   <div class="grid4">
     <div class="card"><p class="q">"Has everyone sent their timesheet?"</p><h3>Chasing the inbox</h3><p>Hours arrive as PDFs, spreadsheets, phone photos and one-line emails.</p></div>
     <div class="card"><p class="q">"Let me type these into QuickBooks."</p><h3>Retyping by hand</h3><p>Every manual entry is a chance to bill the wrong hours or the wrong rate.</p></div>
-    <div class="card"><p class="q">"This week runs into November."</p><h3>Weeks that split</h3><p>A week across two months has to be split correctly, every time.</p></div>
+    <div class="card"><p class="q">"This week runs into the next month."</p><h3>Weeks that split</h3><p>A week across two months has to be split correctly, every time.</p></div>
     <div class="card"><p class="q">"The client found a mistake."</p><h3>Errors found late</h3><p>The most expensive mistake is the one your client finds first.</p></div>
   </div>
 </div></section>
 
-<section id="how" class="alt"><div class="wrap">
-  <div class="head">
-    <p class="eyebrow">How it works</p>
-    <h2>Three steps are ours.<br>One click is yours.</h2>
-  </div>
-  <div class="steps">
-    <div class="step"><div class="k">1</div><h3>A timesheet arrives</h3><p>Your consultant emails it, as they always have. Nothing changes for them.</p></div>
-    <div class="step"><div class="k">2</div><h3>Hours are read</h3><p>Any format. The document is filed into the consultant's folder in your OneDrive.</p></div>
-    <div class="step"><div class="k">3</div><h3>Every number is checked</h3><p>Reconciled against the document's own totals and dates. Anything uncertain is held.</p></div>
-    <div class="step you"><span class="tag">You</span><div class="k">4</div><h3>You approve. It bills.</h3><p>One click creates the QuickBooks invoice, with the timesheet attached as proof.</p></div>
+<section id="how" class="workflow dark"><div class="wrap">
+  <p class="eyebrow">How it works</p>
+  <h2>Three steps are ours.<br>One click is yours.</h2>
+  <p class="lead">Consultants keep sending timesheets the way they always have. Vantusk does the work in between and stops at one clear point: your approval.</p>
+  <div class="track">
+    <div class="wf"><span class="n">STEP 01</span><h3>A timesheet arrives</h3><p>By email, as consultants send them today, or uploaded on the dashboard.</p></div>
+    <div class="wf"><span class="n">STEP 02</span><h3>Hours are read</h3><p>Any format. The document is filed to the consultant's folder.</p></div>
+    <div class="wf"><span class="n">STEP 03</span><h3>Every number is checked</h3><p>Against the document's own totals and dates, with your billing rules applied. Anything uncertain is held.</p></div>
+    <div class="wf you"><span class="n">YOUR TEAM</span><h3>You approve. It bills.</h3><p>One click creates the QuickBooks invoice, with the timesheet attached as proof.</p></div>
   </div>
 </div></section>
 
-<div class="show"><div class="wrap">
-  <div class="show-text">
-    <div>
-      <p class="eyebrow">Inside Vantusk</p>
-      <h2>Every consultant. One screen. Your call.</h2>
-      <p>At month end you don't open forty emails. You open one list, see what's ready and what's held, and approve.</p>
-    </div>
-    <ul>
-      <li><b>✓</b>Ready periods are billed in one click</li>
-      <li><b>!</b>Held periods show exactly why, and what to check</li>
-      <li><b>↗</b>Each invoice lands in QuickBooks with its timesheet attached</li>
-    </ul>
+<section class="product"><div class="wrap">
+  <div class="split-head">
+    <div><p class="eyebrow">Inside Vantusk</p><h2>Know what's ready.<br>Know what needs you.</h2></div>
+    <p class="lead">At month end you don't open forty emails. You open one screen, see what's ready and what's held, and approve.</p>
   </div>
-  <p class="shot-label">Dashboard</p>
-  <figure class="shot">
-    <a href="https://demo.staffflowpro.com" aria-label="Open the live demo"><img src="/img/dashboard-demo.png" width="1881" height="911" loading="lazy"
-         alt="The dashboard in the live demo: invoiced this month, outstanding and past-due totals, a needs-attention bar, and a pending-approvals list with an Approve button for each consultant. Sample data."></a>
-    <figcaption>Approve what's ready, see why anything is held. Owners get their own read-only login. Live demo, sample data. <a href="https://demo.staffflowpro.com">Open it yourself →</a></figcaption>
-  </figure>
-</div></div>
+  <div class="stage">
+    <div class="browser">
+      <div class="bar"><i></i><i></i><i></i><span>Vantusk · Dashboard</span></div>
+      <img src="/img/dashboard-demo.png" width="1881" height="911" loading="lazy" alt="The dashboard in the live demo with pending approvals, recent invoices, the invoice pipeline and latest activity. Sample data.">
+    </div>
+    <div class="stage-cap"><span>From the live demo, with sample data. Owners get their own read-only login.</span><a href="https://demo.staffflowpro.com">Open it yourself →</a></div>
+  </div>
+  <div class="feat">
+    <div class="feat-text"><h3>Held, with the reason</h3><p>When something doesn't add up, the timesheet waits in the Review queue and says exactly what to check, with one click to settle it.</p></div>
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>Vantusk · Review queue</span></div><img src="/img/held-demo.png" width="1673" height="382" loading="lazy" alt="The Review queue in the live demo: two timesheets held. One email names the month but gives no total hours; one sheet states 40 hours in total without showing each day, with a button to confirm the total. Sample data."></div>
+  </div>
+  <div class="feat two">
+    <div class="feat-text"><h3>Approved, with the numbers</h3><p>Before you click, you see the hours, the rate, the amount, the client and the QuickBooks customer. One click creates the invoice.</p></div>
+    <div class="dialog"><img src="/img/approve-demo.png" width="530" height="258" loading="lazy" alt="The approve window in the live demo: Clara Bennett, Ferncliff IT Group, QuickBooks customer 76, Nov 16 to Nov 22, 2026, 40 hours at $72 is $2,880.00, with a Create invoice button. Sample data."></div>
+  </div>
+</div></section>
 
-<section id="handles"><div class="wrap">
-  <div class="head">
-    <p class="eyebrow">What it handles</p>
-    <h2>Built for how staffing actually bills.</h2>
-    <p>Not a generic document reader. Vantusk was built inside a working staffing firm, one real edge case at a time.</p>
+<section id="modules" class="modules"><div class="wrap">
+  <div class="split-head">
+    <div><p class="eyebrow">One back office</p><h2>Everything after the timesheet.</h2></div>
+    <p class="lead">Invoicing is where it starts. The same records then keep your payments, receivables, payroll figures and margins up to date.</p>
+  </div>
+  <div class="rows">
+    <div class="row"><span class="i">01</span><h3>Timesheets</h3><p>Read from any format, checked against the document, filed to the consultant's folder.</p></div>
+    <div class="row"><span class="i">02</span><h3>Invoicing</h3><p>Prepared by each client's billing rules and created in your QuickBooks once you approve.</p></div>
+    <div class="row"><span class="i">03</span><h3>Payments &amp; receivables</h3><p>What's been paid, what's outstanding, what's past due, by client and by invoice.</p></div>
+    <div class="row"><span class="i">04</span><h3>Payroll figures</h3><p>What each consultant is owed for the period, from your pay rates. Your firm makes the payments.</p></div>
+    <div class="row"><span class="i">05</span><h3>Cash flow &amp; P&amp;L</h3><p>Money in and out, and the margin on every consultant.</p></div>
+    <div class="row soon"><span class="i">06</span><h3>Tax &amp; year-end reports<small>Coming soon</small></h3><p>Tax summaries and year-end reports from the same records.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="split-head">
+    <div><p class="eyebrow">What it handles</p><h2>Built for how staffing actually bills.</h2></div>
+    <p class="lead">Not a generic document reader. Vantusk was built inside a working staffing firm, one real edge case at a time.</p>
   </div>
   <div class="handles">
     <div class="h-item"><span class="ic">PDF · XLSX · DOCX · JPG · EMAIL</span><h3>Every format</h3><p>Client portals, Excel grids, Word documents, phone photos, and hours typed in an email.</p></div>
     <div class="h-item"><span class="ic">WEEK → 2 MONTHS</span><h3>Boundary weeks</h3><p>A week that crosses month-end is split to the right invoice.</p></div>
-    <div class="h-item"><span class="ic">16TH → 15TH</span><h3>Custom periods</h3><p>Weekly, semi-monthly, monthly, or the client's own cycle.</p></div>
+    <div class="h-item"><span class="ic">16TH → 15TH</span><h3>Custom periods</h3><p>Weekly, biweekly, monthly, or the client's own cycle.</p></div>
     <div class="h-item"><span class="ic">− VMS FEE</span><h3>VMS deductions</h3><p>Vendor-management fees taken off automatically, per client.</p></div>
     <div class="h-item"><span class="ic">1 PERSON · 2 PROJECTS</span><h3>Multiple placements</h3><p>One consultant on two projects is billed to each correctly.</p></div>
-    <div class="h-item"><span class="ic">PAY RATES</span><h3>Payroll figures</h3><p>Pay computed from your rates and percentages, every period.</p></div>
+    <div class="h-item"><span class="ic">CLIENT APPROVALS</span><h3>Manager sign-off</h3><p>The client's approval is attached to the invoice. If it's missing, the period waits.</p></div>
     <div class="h-item"><span class="ic">TIME ZONE · HOLIDAYS</span><h3>Your calendar</h3><p>Your time zone and your holidays, not the server's.</p></div>
     <div class="h-item"><span class="ic">× DUPLICATES</span><h3>Never billed twice</h3><p>The same timesheet sent twice is recognised and ignored.</p></div>
   </div>
-  <div class="split example">
+
+  <div class="edge">
     <div>
-      <h3>A month that starts mid-week, billed correctly.</h3>
-      <p>September 2026 starts on a Tuesday and ends on a Wednesday. Vantusk bills only September's days from the first and last weeks, and each week links to the timesheet it came from.</p>
+      <p class="eyebrow">The details matter</p>
+      <h3>Month-end doesn't wait for Sunday.</h3>
+      <p class="txt">September 2026 starts on a Tuesday and ends on a Wednesday. The first and last weeks each belong to two months. Vantusk bills September only for September's days, and each week links back to the timesheet it came from.</p>
+      <div class="note">See it on any consultant's invoice in the live demo.</div>
     </div>
-    <figure class="shot light">
-      <img src="/img/weeks-demo.png" width="696" height="346" loading="lazy"
-           alt="One consultant's September invoice in the live demo: 168 hours at $65.00 is $10,920.00, listed week by week. The first week, Aug 31 to Sep 6, and the last, Sep 28 to Oct 4, are marked 'Sep part only'. Sample data.">
-      <figcaption>From the live demo, with sample data.</figcaption>
-    </figure>
+    <div class="cal" role="img" aria-label="September 2026 calendar. The week of August 31 and the week of September 28 are each split between two months.">
+      <div class="cal-head"><strong>September 2026</strong><span>Billing example</span></div>
+      <div class="days"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+      <div class="wk split"><span class="out">31</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+      <p class="wk-note">Aug 31 → August invoice · Sep 1–6 → September invoice</p>
+      <div class="wk"><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span></div>
+      <div class="wk"><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span></div>
+      <div class="wk"><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span></div>
+      <div class="wk split"><span>28</span><span>29</span><span>30</span><span class="out">1</span><span class="out">2</span><span class="out">3</span><span class="out">4</span></div>
+      <p class="wk-note">Sep 28–30 → September invoice · Oct 1–4 → October invoice</p>
+      <div class="legend"><span><i style="background:rgba(201,154,46,.45)"></i>Split week, September days</span><span><i style="border:1px dashed #64738C"></i>Days billed to the other month</span></div>
+    </div>
   </div>
 </div></section>
 
-<section class="alt"><div class="wrap split">
+<section id="control" class="control dark"><div class="wrap">
   <div>
     <p class="eyebrow">Never guesses</p>
     <h2>When the numbers don't reconcile, Vantusk refuses to bill.</h2>
-    <p>A wrong invoice costs more than a late one. Every figure Vantusk reads is checked against the source document before it reaches your books.</p>
+    <p class="lead">A wrong invoice costs more than a late one. Every figure is checked against its source document before it reaches your books.</p>
     <ul class="ticks">
       <li>Anything it can't prove is held, with the reason shown</li>
       <li>A person approves every invoice</li>
-      <li>Every correction is recorded — who, when, and why</li>
+      <li>Every correction is recorded: who, when, and why</li>
     </ul>
   </div>
-  <div class="holdcard" role="img" aria-label="Example of a held timesheet with sample data">
-    <div class="t"><b>James Okafor · October</b><span class="chip held">Held</span></div>
-    <div class="cmp">
-      <div><small>Document total</small><strong>176.0 h</strong></div>
-      <div class="bad"><small>Daily lines add to</small><strong>168.0 h</strong></div>
+  <div>
+    <div class="holdcard" role="img" aria-label="Example of a held timesheet, sample data">
+      <div class="t"><b>James Okafor · October</b><span class="chip">Held</span></div>
+      <div class="cmp">
+        <div><small>Document total</small><strong>176.0 h</strong></div>
+        <div class="bad"><small>Daily lines add to</small><strong>168.0 h</strong></div>
+      </div>
+      <p>The timesheet's printed total doesn't match its own daily hours. Nothing was billed. Check the document and correct the days, or ask the consultant.</p>
+      <div class="acts"><span class="a1">Correct the days</span><span class="a2">View document</span></div>
     </div>
-    <p>The timesheet's printed total doesn't match its own daily hours. Nothing was billed. Check the document and correct the days, or ask the consultant.</p>
-    <div class="acts"><span class="btn btn-primary">Correct the days</span><span class="btn btn-line">View document</span></div>
+    <p class="sample" style="color:var(--on-navy-muted)">Sample data.</p>
   </div>
 </div></section>
 
-<section><div class="wrap split">
+<section id="security" class="sec"><div class="wrap">
   <div>
     <p class="eyebrow">Where your data lives</p>
     <h2>Plain about what we keep.</h2>
+    <p class="body">Your files and invoices stay in your own systems. Vantusk keeps only the records it needs to run billing, in a database that isn't reachable from the public internet.</p>
+    <div class="sec-links"><a href="/security.html">Security →</a><a href="/dpa.html">Data processing →</a><a href="/privacy.html">Privacy →</a></div>
   </div>
-  <div>
-    <p>Timesheet files are filed in your own OneDrive, and invoices are created in your own QuickBooks.</p>
-    <p>To run billing, Vantusk also keeps its own records: consultants, placements and rates, the hours read from each timesheet, invoices and payments, the timesheet emails it processed, and an audit trail of every change. That database is not reachable from the public internet.</p>
-    <div class="sec-links">
-      <a href="/security.html"><b>Security <i>→</i></b><span>How your data is protected</span></a>
-      <a href="/dpa.html"><b>DPA <i>→</i></b><span>Our data processing terms</span></a>
-      <a href="/privacy.html"><b>Privacy <i>→</i></b><span>Every processor, named</span></a>
-    </div>
+  <div class="points">
+    <div class="point"><b>Your OneDrive</b><span>Timesheet files are filed in your own OneDrive, or in private Vantusk storage if you prefer.</span></div>
+    <div class="point"><b>Your QuickBooks</b><span>Invoices are created in your own QuickBooks Online, only after a person approves.</span></div>
+    <div class="point"><b>Walled off per firm</b><span>Each firm's records are separated from every other firm's, in the app and in the database.</span></div>
+    <div class="point"><b>Two-step sign-in</b><span>Required for admins and for anyone who approves invoices or changes rates.</span></div>
   </div>
 </div></section>
 
-<div class="final"><div class="wrap"><div class="box">
-  <h2>See your own timesheets run through it.</h2>
-  <p>Send us a few real timesheets. We'll show you the invoices Vantusk would have prepared.</p>
-  <div class="ctas c">
-    <a class="btn btn-primary" href="https://app.staffflowpro.com/request.html">Request access →</a>
+<section id="faq" class="faq"><div class="wrap">
+  <div><p class="eyebrow">Questions</p><h2>Straight answers.</h2></div>
+  <div>
+    <details open><summary>Does Vantusk send invoices to our clients?</summary><p>No. It creates the invoice in your QuickBooks. You send it the way you do today, by QuickBooks email or through the client's vendor portal, and Vantusk tracks whether it was sent and paid.</p></details>
+    <details><summary>What if the AI misreads a timesheet?</summary><p>The AI only reads; it never decides what to bill. Vantusk checks what it read against the sheet's own printed totals, and a sheet with no printed total is read twice and the two readings compared. Anything that doesn't add up waits for a person, with the reason.</p></details>
+    <details><summary>Can anything be invoiced without us seeing it?</summary><p>No. No invoice is created without a person approving it, and approval is refused while anything in that period is still waiting for review.</p></details>
+    <details><summary>Do we need Microsoft 365?</summary><p>No. You can upload timesheets on the dashboard today. Reading timesheets straight from your Microsoft 365 mailbox is being switched on. On Google Workspace, email forwarding is set up with you during setup.</p></details>
+    <details><summary>Is our data used to train AI?</summary><p>No. Neither Vantusk nor the services that read documents use your data to train AI models.</p></details>
+    <details><summary>How long does setup take?</summary><p>Most firms are set up in about two working days. Your first invoices go out on your next billing cycle.</p></details>
+    <details><summary>What does it cost?</summary><p>Priced per active consultant per month. We share pricing after a short welcome call, once we've seen how you bill.</p></details>
+    <details><summary>Who uses it today?</summary><p>Vantusk is live in production at ITG Technologies, an IT staffing firm.</p></details>
+  </div>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <div>
+    <p class="eyebrow">See it with your own work</p>
+    <h2>See your own timesheets run through it.</h2>
+    <p class="txt">Send us a few real timesheets. We'll show you the invoices Vantusk would have prepared.</p>
+  </div>
+  <div class="ctas">
+    <a class="btn btn-navy" href="https://app.staffflowpro.com/request.html">Request access →</a>
     <a class="btn btn-line" href="https://demo.staffflowpro.com">Try the live demo</a>
   </div>
-  <span class="mailto">or write to <a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a></span>
-</div></div></div>
+</div></section>
+</main>
 
 <footer><div class="wrap">
-  <span>© 2026 Vantusk</span>
-  <span><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></span>
+  <div class="foot">
+    <div><a class="logo" href="/" aria-label="Vantusk home"><svg class="logo-svg" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="-4 -64 1933 280" role="img" aria-label="Vantusk"><path d="M0.0 0.0 L105.0 0.0 L237.5 212.0 L132.5 212.0 Z" fill="#F7F9FC"/><path d="M278.0 -60.0 L367.0 -60.0 L223.9 152.6 L181.0 84.1 Z" fill="#E6B94E"/><g transform="translate(296 0)"><path d="M0.0 212.0 L133.0 0.0 L184.0 0.0 L318.0 212.0 L250.0 212.0 L161.0 67.0 L68.0 212.0 Z" fill="#F7F9FC"/><path d="M107.0 212.0 L161.0 126.0 L212.0 212.0 Z" fill="#E6B94E"/></g><g transform="translate(651 0)"><path d="M0.0 212.0 L0.0 0.0 L50.0 0.0 L177.0 126.0 L177.0 0.0 L234.0 0.0 L234.0 212.0 L182.0 212.0 L57.0 89.0 L57.0 212.0 Z" fill="#F7F9FC"/></g><g transform="translate(925 0)"><path d="M0.0 0.0 L210.0 0.0 L210.0 47.0 L136.0 47.0 L136.0 212.0 L78.0 212.0 L78.0 47.0 L0.0 47.0 Z" fill="#F7F9FC"/></g><g transform="translate(1173 0)"><path d="M28.5 0 V113.5 A83.5 70 0 0 0 195.5 113.5 V0" fill="none" stroke="#F7F9FC" stroke-width="57"/></g><g transform="translate(1430 0)"><g transform="translate(14 0) scale(1.62 1.57)"><path d="M120 24 C102 15 84 13 64 13 C32 13 15 24 15 41 C15 58 32 63 64 66 C100 69 117 78 117 96 C117 114 99 122 64 122 C42 122 22 117 9 110" fill="none" stroke="#F7F9FC" stroke-width="34"/></g></g><g transform="translate(1688 0)"><clipPath id="kNav2"><rect width="237" height="212"/></clipPath><g clip-path="url(#kNav2)"><rect width="57" height="212" fill="#F7F9FC"/><path d="M22 175 L222 -12" stroke="#F7F9FC" stroke-width="60"/><path d="M90 98 L250 250" stroke="#F7F9FC" stroke-width="62"/></g></g></svg></a><p>The automated back office for IT staffing firms.</p></div>
+    <div><h4>Product</h4><a href="#how">How it works</a><a href="#modules">Platform</a><a href="#faq">FAQ</a><a href="https://demo.staffflowpro.com">Live demo</a></div>
+    <div><h4>Company</h4><a href="https://app.staffflowpro.com/request.html">Request access</a><a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a><a href="https://app.staffflowpro.com">Sign in</a></div>
+    <div><h4>Trust</h4><a href="/security.html">Security</a><a href="/dpa.html">Data processing</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Vantusk. All rights reserved.</span><span>Built inside a working IT staffing firm.</span></div>
 </div></footer>
 
 </body>
