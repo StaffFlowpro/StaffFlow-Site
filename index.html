@@ -3,15 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>StaffFlow — Timesheets in. Invoices out.</title>
-<meta name="description" content="StaffFlow turns consultant timesheets into QuickBooks invoices for IT staffing firms. Every hour checked against the document. Nothing billed without your approval.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/img/vantusk-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<title>Vantusk — Timesheets in. Invoices out.</title>
+<meta name="description" content="Vantusk turns consultant timesheets into QuickBooks invoices for IT staffing firms. Every hour checked against the document. Nothing billed without your approval.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0B1220; --navy-line:#1B2638; --on-navy:#E6ECF7; --on-navy-muted:#93A1BA;
-  --blue:#3B82F6; --blue-hi:#5B9BFF; --blue-dk:#2563EB; --blue-soft:#EEF4FF; --blue-line:#BFD3F5;
+  --navy:#0D1728; --navy-line:#1E2B42; --on-navy:#E6ECF7; --on-navy-muted:#93A1BA;
+  --blue:#C99A2E; --blue-hi:#E6B94E; --blue-dk:#8A6514; --blue-soft:#FBF5E6; --blue-line:#EAD9AE;
   --ink:#101828; --body:#475467; --faint:#667085; --line:#EAECF0; --line2:#D0D5DD; --bg:#F8F9FB; --card:#FFFFFF;
   --ok:#067647; --ok-soft:#ECFDF3; --ok-line:#ABEFC6; --hold:#B54708; --hold-soft:#FFFAEB;
   --font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -27,28 +30,29 @@ a:focus-visible,.btn:focus-visible{outline:2px solid var(--blue);outline-offset:
 h1,h2,h3{margin:0;letter-spacing:-.025em;line-height:1.1}
 .eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-dk);margin:0 0 14px}
 .btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15.5px;font-weight:600;padding:13px 22px;border-radius:10px;text-decoration:none;transition:background .15s,border-color .15s}
-.btn-primary{background:var(--blue);color:#fff;box-shadow:0 1px 2px rgba(16,24,40,.08)}
-.btn-primary:hover{background:#2F6FDB}
+.btn-primary{background:var(--blue);color:#1A1407;box-shadow:0 1px 2px rgba(16,24,40,.08)}
+.btn-primary:hover{background:#B8891F}
 .btn-line{color:var(--ink);border:1px solid var(--line2);background:#fff}
 .btn-line:hover{border-color:#98A2B3}
 
 /* ---------- top: nav + hero ---------- */
-.top{background:radial-gradient(900px 520px at 88% -10%,rgba(59,130,246,.13),transparent 60%),
-                radial-gradient(700px 420px at -10% 110%,rgba(91,155,255,.08),transparent 60%),var(--card);border-bottom:1px solid var(--line)}
+.top{background:radial-gradient(900px 520px at 88% -10%,rgba(201,154,46,.13),transparent 60%),
+                radial-gradient(700px 420px at -10% 110%,rgba(230,185,78,.08),transparent 60%),var(--card);border-bottom:1px solid var(--line)}
 nav{padding:22px 0}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-size:24px;font-weight:600;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
-.logo span{color:var(--blue)}
+.logo-svg{display:block;width:auto}
+.logo{display:block;font-size:24px;font-weight:600;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.logo span{color:var(--blue-dk)}
 .links{display:flex;gap:28px;align-items:center;font-size:15px}
 .links a{color:var(--body);text-decoration:none}
 .links a:hover{color:var(--ink)}
 .links .signin{color:var(--ink);font-weight:500}
-.links .btn{padding:9px 16px;font-size:14.5px;color:#fff}
+.links .btn{padding:9px 16px;font-size:14.5px;color:#1A1407}
 
 .hero{padding:56px 0 88px}
 .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .hero h1{font-size:64px;font-weight:700;letter-spacing:-.04em;line-height:1.03}
-.hero h1 span{color:var(--blue)}
+.hero h1 span{color:var(--blue-dk)}
 .lede{font-size:19px;color:var(--body);margin:24px 0 32px;max-width:520px}
 .ctas{display:flex;gap:12px;flex-wrap:wrap}
 .live{margin-top:28px;font-size:13.5px;color:var(--faint);display:flex;align-items:center;gap:10px}
@@ -58,7 +62,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px
 .flow{position:relative;display:grid;gap:0;max-width:500px;margin-left:auto}
 .fcard{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--lift);padding:16px 18px;position:relative;z-index:1}
 .fcard .lbl{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
-.fcard .lbl i{font-style:normal;width:20px;height:20px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;background:linear-gradient(145deg,#1E3A8A,#2563EB)}
+.fcard .lbl i{font-style:normal;width:20px;height:20px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;background:linear-gradient(145deg,#0D1728,#8A6514)}
 .f1{margin-right:56px}
 .f2{margin-left:28px;margin-right:28px}
 .f3{margin-left:56px}
@@ -89,7 +93,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px
 .stat{padding:34px 26px;border-left:1px solid var(--line)}
 .stat:first-child{border-left:0;padding-left:0}
 .stat b{display:block;font-size:38px;font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1}
-.stat b span{color:var(--blue)}
+.stat b span{color:var(--blue-dk)}
 .stat p{margin:10px 0 0;font-size:14.5px;color:var(--body);line-height:1.5}
 
 /* ---------- sections ---------- */
@@ -108,15 +112,15 @@ section.alt{background:var(--bg);border-top:1px solid var(--line);border-bottom:
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;position:relative;box-shadow:var(--shadow)}
 .step .k{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;
-         color:#fff;background:linear-gradient(145deg,#1E3A8A,#2563EB);margin-bottom:16px}
+         color:#fff;background:linear-gradient(145deg,#0D1728,#8A6514);margin-bottom:16px}
 .step h3{font-size:17.5px;font-weight:600;margin-bottom:6px}
 .step p{margin:0;font-size:15px;color:var(--body)}
 .step.you{border-color:var(--blue-line);background:var(--blue-soft)}
 .step.you .tag{position:absolute;top:24px;right:20px;font-size:11.5px;font-weight:600;color:var(--blue-dk);background:#fff;border:1px solid var(--blue-line);border-radius:20px;padding:2px 9px}
 
 /* ---------- the one dark band: the product ---------- */
-.show{background:radial-gradient(760px 420px at 80% 0%,rgba(59,130,246,.26),transparent 62%),
-                 radial-gradient(560px 340px at 0% 100%,rgba(91,155,255,.12),transparent 60%),var(--navy);color:var(--on-navy);padding:104px 0}
+.show{background:radial-gradient(760px 420px at 80% 0%,rgba(201,154,46,.26),transparent 62%),
+                 radial-gradient(560px 340px at 0% 100%,rgba(230,185,78,.12),transparent 60%),var(--navy);color:var(--on-navy);padding:104px 0}
 .show .wrap{display:block}
 .show-text{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;margin-bottom:48px}
 .show .eyebrow{color:var(--blue-hi)}
@@ -176,7 +180,7 @@ ul.ticks li:after{content:"";position:absolute;left:9px;top:19px;width:5px;heigh
 .sec-links span{font-size:13.5px;color:var(--body)}
 
 .final{padding:96px 0}
-.final .box{background:radial-gradient(600px 300px at 50% 0%,rgba(59,130,246,.16),transparent 70%),var(--blue-soft);border:1px solid var(--blue-line);border-radius:24px;text-align:center;padding:72px 32px}
+.final .box{background:radial-gradient(600px 300px at 50% 0%,rgba(201,154,46,.16),transparent 70%),var(--blue-soft);border:1px solid var(--blue-line);border-radius:24px;text-align:center;padding:72px 32px}
 .final h2{font-size:44px;font-weight:700;max-width:720px;margin:0 auto}
 .final p{color:var(--body);font-size:18px;margin:18px auto 30px;max-width:540px}
 .ctas.c{justify-content:center}
@@ -226,7 +230,7 @@ footer a:hover{color:var(--ink)}
 
 <div class="top">
   <nav><div class="wrap">
-    <a class="logo" href="/">Staff<span>Flow</span></a>
+    <a class="logo" href="/" aria-label="Vantusk home"><svg class="logo-svg" height="26" xmlns="http://www.w3.org/2000/svg" viewBox="-4 -64 1933 280" role="img" aria-label="Vantusk"><path d="M0.0 0.0 L105.0 0.0 L237.5 212.0 L132.5 212.0 Z" fill="#0D1728"/><path d="M278.0 -60.0 L367.0 -60.0 L223.9 152.6 L181.0 84.1 Z" fill="#C99A2E"/><g transform="translate(296 0)"><path d="M0.0 212.0 L133.0 0.0 L184.0 0.0 L318.0 212.0 L250.0 212.0 L161.0 67.0 L68.0 212.0 Z" fill="#0D1728"/><path d="M107.0 212.0 L161.0 126.0 L212.0 212.0 Z" fill="#C99A2E"/></g><g transform="translate(651 0)"><path d="M0.0 212.0 L0.0 0.0 L50.0 0.0 L177.0 126.0 L177.0 0.0 L234.0 0.0 L234.0 212.0 L182.0 212.0 L57.0 89.0 L57.0 212.0 Z" fill="#0D1728"/></g><g transform="translate(925 0)"><path d="M0.0 0.0 L210.0 0.0 L210.0 47.0 L136.0 47.0 L136.0 212.0 L78.0 212.0 L78.0 47.0 L0.0 47.0 Z" fill="#0D1728"/></g><g transform="translate(1173 0)"><path d="M28.5 0 V113.5 A83.5 70 0 0 0 195.5 113.5 V0" fill="none" stroke="#0D1728" stroke-width="57"/></g><g transform="translate(1430 0)"><g transform="translate(14 0) scale(1.62 1.57)"><path d="M120 24 C102 15 84 13 64 13 C32 13 15 24 15 41 C15 58 32 63 64 66 C100 69 117 78 117 96 C117 114 99 122 64 122 C42 122 22 117 9 110" fill="none" stroke="#0D1728" stroke-width="34"/></g></g><g transform="translate(1688 0)"><clipPath id="k0D1728"><rect width="237" height="212"/></clipPath><g clip-path="url(#k0D1728)"><rect width="57" height="212" fill="#0D1728"/><path d="M22 175 L222 -12" stroke="#0D1728" stroke-width="60"/><path d="M90 98 L250 250" stroke="#0D1728" stroke-width="62"/></g></g></svg></a>
     <div class="links">
       <a href="#how">How it works</a><a href="#handles">What it handles</a><a href="/security.html">Security</a><a href="https://demo.staffflowpro.com">Live demo</a>
       <a class="signin" href="https://app.staffflowpro.com">Sign in</a>
@@ -238,7 +242,7 @@ footer a:hover{color:var(--ink)}
     <div>
       <p class="eyebrow">For IT staffing firms on QuickBooks</p>
       <h1>Timesheets in.<br>Invoices out.<br><span>Same day.</span></h1>
-      <p class="lede">StaffFlow reads every consultant timesheet the moment it lands, checks each hour against the document, and prepares the QuickBooks invoice. You review it, click approve, and it's billed.</p>
+      <p class="lede">Vantusk reads every consultant timesheet the moment it lands, checks each hour against the document, and prepares the QuickBooks invoice. You review it, click approve, and it's billed.</p>
       <div class="ctas">
         <a class="btn btn-primary" href="https://demo.staffflowpro.com">Try the live demo →</a>
         <a class="btn btn-line" href="https://app.staffflowpro.com/request.html">Request access</a>
@@ -275,9 +279,9 @@ footer a:hover{color:var(--ink)}
 </div>
 
 <div class="proof"><div class="wrap">
-  <div class="stat"><b>56</b><p>consultants billed through StaffFlow at ITG</p></div>
+  <div class="stat"><b>56</b><p>consultants billed through Vantusk at ITG</p></div>
   <div class="stat"><b>5</b><p>timesheet formats — PDF, Excel, Word, photo, email</p></div>
-  <div class="stat"><b>100<span>%</span></b><p>of the hours StaffFlow reads are traced back to the document they came from</p></div>
+  <div class="stat"><b>100<span>%</span></b><p>of the hours Vantusk reads are traced back to the document they came from</p></div>
   <div class="stat"><b>0</b><p>invoices created without a person's approval</p></div>
 </div></div>
 
@@ -311,7 +315,7 @@ footer a:hover{color:var(--ink)}
 <div class="show"><div class="wrap">
   <div class="show-text">
     <div>
-      <p class="eyebrow">Inside StaffFlow</p>
+      <p class="eyebrow">Inside Vantusk</p>
       <h2>Every consultant. One screen. Your call.</h2>
       <p>At month end you don't open forty emails. You open one list, see what's ready and what's held, and approve.</p>
     </div>
@@ -326,12 +330,12 @@ footer a:hover{color:var(--ink)}
     <button type="button" role="tab" id="t-owner" aria-controls="v-owner" aria-selected="false" tabindex="-1">Owner view · read-only</button>
   </div>
   <figure class="shot" role="tabpanel" id="v-admin" aria-labelledby="t-admin">
-    <a href="https://demo.staffflowpro.com" aria-label="Open the live demo"><img src="/img/dashboard-demo.png" width="1496" height="891" loading="lazy"
+    <a href="https://demo.staffflowpro.com" aria-label="Open the live demo"><img src="/img/dashboard-demo.png" width="1881" height="911" loading="lazy"
          alt="The admin dashboard in the live demo: invoiced this month, outstanding and past-due totals, a needs-attention bar, and a pending-approvals list with an Approve button for each consultant. Sample data."></a>
     <figcaption><b>Admin:</b> approve what's ready, see why anything is held. Live demo, sample data. <a href="https://demo.staffflowpro.com">Open it yourself →</a></figcaption>
   </figure>
   <figure class="shot" role="tabpanel" id="v-owner" aria-labelledby="t-owner" hidden>
-    <a href="https://demo.staffflowpro.com" aria-label="Open the live demo"><img src="/img/owner-demo.png" width="1496" height="891" loading="lazy"
+    <a href="https://demo.staffflowpro.com" aria-label="Open the live demo"><img src="/img/owner-demo.png" width="1910" height="906" loading="lazy"
          alt="The owner's read-only view in the live demo: invoiced this month, outstanding, past due and collected totals, the invoice pipeline, recent invoices and recent payments. Sample data."></a>
     <figcaption><b>Owner:</b> a read-only login for what's billed, owed, past due and paid. Nothing can be changed from it: the server refuses, so it's not just a hidden button. Live demo, sample data.</figcaption>
   </figure>
@@ -341,7 +345,7 @@ footer a:hover{color:var(--ink)}
   <div class="head">
     <p class="eyebrow">What it handles</p>
     <h2>Built for how staffing actually bills.</h2>
-    <p>Not a generic document reader. StaffFlow was built inside a working staffing firm, one real edge case at a time.</p>
+    <p>Not a generic document reader. Vantusk was built inside a working staffing firm, one real edge case at a time.</p>
   </div>
   <div class="handles">
     <div class="h-item"><span class="ic">PDF · XLSX · DOCX · JPG · EMAIL</span><h3>Every format</h3><p>Client portals, Excel grids, Word documents, phone photos, and hours typed in an email.</p></div>
@@ -356,7 +360,7 @@ footer a:hover{color:var(--ink)}
   <div class="split example">
     <div>
       <h3>A month that starts mid-week, billed correctly.</h3>
-      <p>September 2026 starts on a Tuesday and ends on a Wednesday. StaffFlow bills only September's days from the first and last weeks, and each week links to the timesheet it came from.</p>
+      <p>September 2026 starts on a Tuesday and ends on a Wednesday. Vantusk bills only September's days from the first and last weeks, and each week links to the timesheet it came from.</p>
     </div>
     <figure class="shot light">
       <img src="/img/weeks-demo.png" width="696" height="346" loading="lazy"
@@ -369,8 +373,8 @@ footer a:hover{color:var(--ink)}
 <section class="alt"><div class="wrap split">
   <div>
     <p class="eyebrow">Never guesses</p>
-    <h2>When the numbers don't reconcile, StaffFlow refuses to bill.</h2>
-    <p>A wrong invoice costs more than a late one. Every figure StaffFlow reads is checked against the source document before it reaches your books.</p>
+    <h2>When the numbers don't reconcile, Vantusk refuses to bill.</h2>
+    <p>A wrong invoice costs more than a late one. Every figure Vantusk reads is checked against the source document before it reaches your books.</p>
     <ul class="ticks">
       <li>Anything it can't prove is held, with the reason shown</li>
       <li>A person approves every invoice</li>
@@ -395,7 +399,7 @@ footer a:hover{color:var(--ink)}
   </div>
   <div>
     <p>Timesheet files are filed in your own OneDrive, and invoices are created in your own QuickBooks.</p>
-    <p>To run billing, StaffFlow also keeps its own records: consultants, placements and rates, the hours read from each timesheet, invoices and payments, the timesheet emails it processed, and an audit trail of every change. That database is not reachable from the public internet.</p>
+    <p>To run billing, Vantusk also keeps its own records: consultants, placements and rates, the hours read from each timesheet, invoices and payments, the timesheet emails it processed, and an audit trail of every change. That database is not reachable from the public internet.</p>
     <div class="sec-links">
       <a href="/security.html"><b>Security <i>→</i></b><span>How your data is protected</span></a>
       <a href="/dpa.html"><b>DPA <i>→</i></b><span>Our data processing terms</span></a>
@@ -406,7 +410,7 @@ footer a:hover{color:var(--ink)}
 
 <div class="final"><div class="wrap"><div class="box">
   <h2>See your own timesheets run through it.</h2>
-  <p>Send us a few real timesheets. We'll show you the invoices StaffFlow would have prepared.</p>
+  <p>Send us a few real timesheets. We'll show you the invoices Vantusk would have prepared.</p>
   <div class="ctas c">
     <a class="btn btn-primary" href="https://app.staffflowpro.com/request.html">Request access →</a>
     <a class="btn btn-line" href="https://demo.staffflowpro.com">Try the live demo</a>
@@ -415,7 +419,7 @@ footer a:hover{color:var(--ink)}
 </div></div></div>
 
 <footer><div class="wrap">
-  <span>© 2026 StaffFlow</span>
+  <span>© 2026 Vantusk</span>
   <span><a href="/security.html">Security</a><a href="/dpa.html">DPA</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></span>
 </div></footer>
 
