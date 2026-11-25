@@ -203,6 +203,16 @@ summary:after{content:"+";position:absolute;right:4px;top:18px;font-size:24px;fo
 details[open] summary:after{content:"−"}
 details p{margin:0 0 22px;font-size:16px;color:var(--body);max-width:680px}
 
+.contact{background:var(--paper)}
+.contact .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:start}
+.contact .body{font-size:17px;color:var(--body);margin:18px 0 0;max-width:460px}
+.ways{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.way{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;transition:border-color .15s}
+.way:hover{border-color:var(--gold-line)}
+.way small{display:block;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dk);margin-bottom:10px}
+.way b{display:block;font-size:19px;color:var(--navy);margin-bottom:6px;overflow-wrap:anywhere}
+.way span{font-size:15px;color:var(--body)}
+
 /* final */
 .final{background:var(--gold);padding:88px 0}
 .final .wrap{display:flex;align-items:center;justify-content:space-between;gap:40px}
@@ -226,6 +236,7 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
 @media (max-width:1000px){
   h2{font-size:38px}
   .feat.two{grid-template-columns:1fr;gap:24px}
+  .contact .wrap{grid-template-columns:1fr;gap:36px}
   .hero .wrap,.split-head,.edge,.control .wrap,.sec .wrap,.faq .wrap{grid-template-columns:1fr;gap:44px}
   .hero h1{font-size:52px}
   .frame{transform:none;width:100%}
@@ -249,7 +260,7 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
   .right .signin{display:none}
   .right .btn{padding:9px 14px;font-size:13.5px}
   .logo svg{height:20px}
-  .grid4,.handles,.track,.points,.feat.two{grid-template-columns:1fr}
+  .grid4,.handles,.track,.points,.feat.two,.ways{grid-template-columns:1fr}
   .dialog{padding:16px}
   .track{border:0;margin-top:36px;gap:28px}
   .wf{padding:0 0 0 24px;border-left:1px solid rgba(255,255,255,.18)}
@@ -271,7 +282,7 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
 <header class="site"><div class="wrap">
   <a class="logo" href="/" aria-label="Vantusk home"><svg class="logo-svg" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="-4 -64 1933 280" role="img" aria-label="Vantusk"><path d="M0.0 0.0 L105.0 0.0 L237.5 212.0 L132.5 212.0 Z" fill="#F7F9FC"/><path d="M278.0 -60.0 L367.0 -60.0 L223.9 152.6 L181.0 84.1 Z" fill="#E6B94E"/><g transform="translate(296 0)"><path d="M0.0 212.0 L133.0 0.0 L184.0 0.0 L318.0 212.0 L250.0 212.0 L161.0 67.0 L68.0 212.0 Z" fill="#F7F9FC"/><path d="M107.0 212.0 L161.0 126.0 L212.0 212.0 Z" fill="#E6B94E"/></g><g transform="translate(651 0)"><path d="M0.0 212.0 L0.0 0.0 L50.0 0.0 L177.0 126.0 L177.0 0.0 L234.0 0.0 L234.0 212.0 L182.0 212.0 L57.0 89.0 L57.0 212.0 Z" fill="#F7F9FC"/></g><g transform="translate(925 0)"><path d="M0.0 0.0 L210.0 0.0 L210.0 47.0 L136.0 47.0 L136.0 212.0 L78.0 212.0 L78.0 47.0 L0.0 47.0 Z" fill="#F7F9FC"/></g><g transform="translate(1173 0)"><path d="M28.5 0 V113.5 A83.5 70 0 0 0 195.5 113.5 V0" fill="none" stroke="#F7F9FC" stroke-width="57"/></g><g transform="translate(1430 0)"><g transform="translate(14 0) scale(1.62 1.57)"><path d="M120 24 C102 15 84 13 64 13 C32 13 15 24 15 41 C15 58 32 63 64 66 C100 69 117 78 117 96 C117 114 99 122 64 122 C42 122 22 117 9 110" fill="none" stroke="#F7F9FC" stroke-width="34"/></g></g><g transform="translate(1688 0)"><clipPath id="kNav"><rect width="237" height="212"/></clipPath><g clip-path="url(#kNav)"><rect width="57" height="212" fill="#F7F9FC"/><path d="M22 175 L222 -12" stroke="#F7F9FC" stroke-width="60"/><path d="M90 98 L250 250" stroke="#F7F9FC" stroke-width="62"/></g></g></svg></a>
   <nav class="links" aria-label="Main">
-    <a href="#how">How it works</a><a href="#modules">Platform</a><a href="#control">Accuracy</a><a href="#security">Security</a><a href="#faq">FAQ</a>
+    <a href="#how">How it works</a><a href="#modules">Platform</a><a href="#control">Accuracy</a><a href="#security">Security</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
   </nav>
   <div class="right">
     <a class="signin" href="https://app.staffflowpro.com">Sign in</a>
@@ -460,6 +471,18 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
   </div>
 </div></section>
 
+<section id="contact" class="contact"><div class="wrap">
+  <div>
+    <p class="eyebrow">Contact</p>
+    <h2>Talk to us.</h2>
+    <p class="body">A question about your billing, a partnership, or just want to see if Vantusk fits? Write to us. We reply within one working day.</p>
+  </div>
+  <div class="ways">
+    <a class="way" href="mailto:hello@staffflowpro.com"><small>Email</small><b>hello@staffflowpro.com</b><span>Any question, any time.</span></a>
+    <a class="way" href="https://app.staffflowpro.com/request.html"><small>Ready to try it?</small><b>Request access →</b><span>Tell us about your firm and we'll set up a trial on your own timesheets.</span></a>
+  </div>
+</div></section>
+
 <section class="final"><div class="wrap">
   <div>
     <p class="eyebrow">See it with your own work</p>
@@ -477,7 +500,7 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
   <div class="foot">
     <div><a class="logo" href="/" aria-label="Vantusk home"><svg class="logo-svg" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="-4 -64 1933 280" role="img" aria-label="Vantusk"><path d="M0.0 0.0 L105.0 0.0 L237.5 212.0 L132.5 212.0 Z" fill="#F7F9FC"/><path d="M278.0 -60.0 L367.0 -60.0 L223.9 152.6 L181.0 84.1 Z" fill="#E6B94E"/><g transform="translate(296 0)"><path d="M0.0 212.0 L133.0 0.0 L184.0 0.0 L318.0 212.0 L250.0 212.0 L161.0 67.0 L68.0 212.0 Z" fill="#F7F9FC"/><path d="M107.0 212.0 L161.0 126.0 L212.0 212.0 Z" fill="#E6B94E"/></g><g transform="translate(651 0)"><path d="M0.0 212.0 L0.0 0.0 L50.0 0.0 L177.0 126.0 L177.0 0.0 L234.0 0.0 L234.0 212.0 L182.0 212.0 L57.0 89.0 L57.0 212.0 Z" fill="#F7F9FC"/></g><g transform="translate(925 0)"><path d="M0.0 0.0 L210.0 0.0 L210.0 47.0 L136.0 47.0 L136.0 212.0 L78.0 212.0 L78.0 47.0 L0.0 47.0 Z" fill="#F7F9FC"/></g><g transform="translate(1173 0)"><path d="M28.5 0 V113.5 A83.5 70 0 0 0 195.5 113.5 V0" fill="none" stroke="#F7F9FC" stroke-width="57"/></g><g transform="translate(1430 0)"><g transform="translate(14 0) scale(1.62 1.57)"><path d="M120 24 C102 15 84 13 64 13 C32 13 15 24 15 41 C15 58 32 63 64 66 C100 69 117 78 117 96 C117 114 99 122 64 122 C42 122 22 117 9 110" fill="none" stroke="#F7F9FC" stroke-width="34"/></g></g><g transform="translate(1688 0)"><clipPath id="kNav2"><rect width="237" height="212"/></clipPath><g clip-path="url(#kNav2)"><rect width="57" height="212" fill="#F7F9FC"/><path d="M22 175 L222 -12" stroke="#F7F9FC" stroke-width="60"/><path d="M90 98 L250 250" stroke="#F7F9FC" stroke-width="62"/></g></g></svg></a><p>The automated back office for IT staffing firms.</p></div>
     <div><h4>Product</h4><a href="#how">How it works</a><a href="#modules">Platform</a><a href="#faq">FAQ</a><a href="https://demo.staffflowpro.com">Live demo</a></div>
-    <div><h4>Company</h4><a href="https://app.staffflowpro.com/request.html">Request access</a><a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a><a href="https://app.staffflowpro.com">Sign in</a></div>
+    <div><h4>Company</h4><a href="https://app.staffflowpro.com/request.html">Request access</a><a href="#contact">Contact</a><a href="mailto:hello@staffflowpro.com">hello@staffflowpro.com</a><a href="https://app.staffflowpro.com">Sign in</a></div>
     <div><h4>Trust</h4><a href="/security.html">Security</a><a href="/dpa.html">Data processing</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
   </div>
   <div class="foot-bottom"><span>© 2026 Vantusk. All rights reserved.</span><span>Built inside a working IT staffing firm.</span></div>
