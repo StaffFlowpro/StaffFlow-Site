@@ -319,6 +319,31 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
 .dev-wrap .float{left:-24px;bottom:-100px}
 @media (max-width:1000px){ .dev-wrap{width:100%} .dev{transform:none} }
 @media (max-width:640px){ .dev{grid-template-columns:1fr} .dsb{display:none} .dmain{margin:0;border-radius:0} .dkpis b{font-size:17px} .drow{grid-template-columns:1fr} .dev-wrap .float{position:static;margin-top:16px} }
+
+/* how it works — the six-step flow, as on the sign-in page: a glow runs 1→6, then rests */
+.flow6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:64px}
+.s6{padding-right:14px}
+.r6{display:flex;align-items:center;margin-bottom:18px}
+.t6{width:66px;height:66px;flex:none;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--gold-hi);
+  background:linear-gradient(145deg,#18233A,#111C30);border:1px solid rgba(230,185,78,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 24px rgba(0,0,0,.35)}
+.t6.you{background:linear-gradient(145deg,#E6B94E,#C99A2E);color:#1A1407;border-color:transparent}
+.t6.qbt img{width:40px;height:40px;display:block}
+.a6{flex:1;text-align:center;color:rgba(230,185,78,.6);font-size:22px}
+.s6 b{display:block;font-size:17px;font-weight:700;color:#fff;line-height:1.25}
+.s6.you b{color:var(--gold-hi)}
+.s6 span{display:block;font-size:14.5px;color:#AEB9C8;line-height:1.5;margin-top:6px;max-width:190px}
+@keyframes g6{0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 24px rgba(0,0,0,.35);filter:none}
+  4%{box-shadow:0 0 0 3px rgba(230,185,78,.35),0 0 30px rgba(201,154,46,.7);filter:brightness(1.15)}
+  9%{box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 24px rgba(0,0,0,.35);filter:none}}
+@keyframes ga6{0%,100%{opacity:.6;transform:none}4%{opacity:1;transform:translateX(4px)}9%{opacity:.6;transform:none}}
+.t6{animation:g6 9s ease-in-out infinite}.a6{animation:ga6 9s ease-in-out infinite}
+.s6:nth-child(1) .t6{animation-delay:1s}.s6:nth-child(2) .t6{animation-delay:1.6s}.s6:nth-child(3) .t6{animation-delay:2.2s}
+.s6:nth-child(4) .t6{animation-delay:2.8s}.s6:nth-child(5) .t6{animation-delay:3.4s}.s6:nth-child(6) .t6{animation-delay:4s}
+.s6:nth-child(1) .a6{animation-delay:1.3s}.s6:nth-child(2) .a6{animation-delay:1.9s}.s6:nth-child(3) .a6{animation-delay:2.5s}
+.s6:nth-child(4) .a6{animation-delay:3.1s}.s6:nth-child(5) .a6{animation-delay:3.7s}
+@media (prefers-reduced-motion:reduce){.t6,.a6{animation:none}}
+@media (max-width:1000px){.flow6{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:40px}.s6:nth-child(3) .a6{visibility:hidden}}
+@media (max-width:640px){.flow6{grid-template-columns:1fr;row-gap:28px;margin-top:40px}.a6{display:none}.r6{margin-bottom:12px}.s6 span{max-width:none}}
 </style>
 </head>
 <body>
@@ -405,13 +430,15 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
 
 <section id="how" class="workflow dark"><div class="wrap">
   <p class="eyebrow">How it works</p>
-  <h2>Three steps are ours.<br>One click is yours.</h2>
+  <h2>Five steps are ours.<br>One click is yours.</h2>
   <p class="lead">Consultants keep sending timesheets the way they always have. Vantusk does the work in between and stops at one clear point: your approval.</p>
-  <div class="track">
-    <div class="wf"><span class="n">STEP 01</span><h3>A timesheet arrives</h3><p>By email, as consultants send them today, or uploaded on the dashboard.</p></div>
-    <div class="wf"><span class="n">STEP 02</span><h3>Hours are read</h3><p>Any format. The document is filed to the consultant's folder.</p></div>
-    <div class="wf"><span class="n">STEP 03</span><h3>Every number is checked</h3><p>Against the document's own totals and dates, with your billing rules applied. Anything uncertain is held.</p></div>
-    <div class="wf you"><span class="n">YOUR TEAM</span><h3>You approve. It bills.</h3><p>One click creates the QuickBooks invoice, with the timesheet attached as proof.</p></div>
+  <div class="flow6">
+    <div class="s6"><div class="r6"><div class="t6"><i class="ti ti-mail-opened"></i></div><i class="ti ti-arrow-right a6" aria-hidden="true"></i></div><b>1. Receive timesheets</b><span>By email, as consultants send them today, or uploaded on the dashboard.</span></div>
+    <div class="s6"><div class="r6"><div class="t6"><i class="ti ti-file-text"></i></div><i class="ti ti-arrow-right a6" aria-hidden="true"></i></div><b>2. Read &amp; extract</b><span>Consultant, dates and hours, from any format.</span></div>
+    <div class="s6"><div class="r6"><div class="t6"><i class="ti ti-settings"></i></div><i class="ti ti-arrow-right a6" aria-hidden="true"></i></div><b>3. Check &amp; apply rules</b><span>Every hour against the document; client, vendor, rates and calendars.</span></div>
+    <div class="s6 you"><div class="r6"><div class="t6 you"><i class="ti ti-circle-check"></i></div><i class="ti ti-arrow-right a6" aria-hidden="true"></i></div><b>4. You approve</b><span>The exact amount, before anything bills.</span></div>
+    <div class="s6"><div class="r6"><div class="t6 qbt"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAzNiAzNiI+PHBhdGggZmlsbD0iIzJDQTAxQyIgZD0iTTE4IDM2YzkuOTQxMSAwIDE4LTguMDU4OSAxOC0xOCAwLTkuOTQxMTQtOC4wNTg5LTE4LTE4LTE4QzguMDU4ODYgMCAwIDguMDU4ODYgMCAxOGMwIDkuOTQxMSA4LjA1ODg2IDE4IDE4IDE4WiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0xMi4wMDAyIDExYy0zLjg2Nzk3IDAtNi45OTk5NiAzLjEzNi02Ljk5OTk2IDcgMCAzLjg2OCAzLjEzMTk5IDcgNi45OTk5NiA3aDEuMDAwMXYtMi42aC0xLjAwMDFjLTIuNDI3OTggMC00LjM5OTk1LTEuOTcyLTQuMzk5OTUtNC40IDAtMi40MjggMS45NzE5Ny00LjQgNC4zOTk5NS00LjRoMi40MDQxdjEzLjZjMCAxLjQzNiAxLjE2MzkgMi42IDIuNTk5OSAyLjZWMTFoLTUuMDA0Wk0yNC4wMDM4IDI1YzMuODY4IDAgNi45OTk5LTMuMTM2MSA2Ljk5OTktNyAwLTMuODY4LTMuMTMxOS03LTYuOTk5OS03aC0xLjAwMDF2Mi41OTk5aDEuMDAwMWMyLjQyOCAwIDQuMzk5OSAxLjk3MjEgNC4zOTk5IDQuNDAwMXMtMS45NzE5IDQuMzk5OS00LjM5OTkgNC4zOTk5aC0yLjQwNDFWOC43OTk5N2MwLTEuNDM2MDItMS4xNjM5LTIuNjAwMDItMi41OTk5LTIuNjAwMDJWMjVoNS4wMDRaIi8+PC9zdmc+" alt="QuickBooks" width="30" height="30"></div><i class="ti ti-arrow-right a6" aria-hidden="true"></i></div><b>5. Invoice in QuickBooks</b><span>Created with the timesheet attached, then tracked to payment.</span></div>
+    <div class="s6"><div class="r6"><div class="t6"><i class="ti ti-chart-bar"></i></div></div><b>6. Track on the dashboard</b><span>Payments, receivables, payroll figures and margin.</span></div>
   </div>
 </div></section>
 
