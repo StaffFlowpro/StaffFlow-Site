@@ -11,6 +11,7 @@
 <meta name="description" content="Vantusk runs the back office for IT staffing firms: timesheets, invoicing, payments, receivables and payroll figures. Every hour is checked against its document, and nothing is billed without your approval.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.48.0/dist/tabler-icons.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -134,7 +135,8 @@ header.site .wrap{height:76px;display:flex;align-items:center;justify-content:sp
 .row h3{font-size:21px;font-weight:700;color:var(--navy)}
 .row p{margin:0;font-size:15.5px;color:var(--body)}
 .row.soon h3,.row.soon p,.row.soon .i{color:#98A2B3}
-.row.soon h3 small{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--gold-dk);background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:20px;padding:2px 9px;margin-left:10px;vertical-align:middle}
+.row.soon h3{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px}
+.row.soon h3 small{margin-left:0 !important;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--gold-dk);background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:20px;padding:2px 9px;margin-left:10px;vertical-align:middle}
 
 /* edge cases */
 .handles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -275,6 +277,48 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
   .stage-cap{display:block}
   .foot{grid-template-columns:1fr 1fr}
 }
+
+/* hero — the sample dashboard, as on the sign-in page */
+.hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.dev-wrap{position:relative;width:124%}
+.dev{display:grid;grid-template-columns:186px 1fr;background:#0B1424;border:1px solid rgba(255,255,255,.12);border-radius:22px;overflow:hidden;
+  box-shadow:0 50px 100px -30px rgba(0,0,0,.7),0 0 0 1px rgba(230,185,78,.08);transform:perspective(1500px) rotateY(-12deg) rotateX(4deg) rotateZ(1deg);transform-origin:left center}
+.dsb{padding:18px 12px;display:grid;gap:6px;align-content:start;color:#C9D4E6;font-size:12.5px}
+.dlogo{line-height:0;margin:2px 4px 10px}
+.dco{font-size:11.5px;background:#16233A;border-radius:7px;padding:6px 8px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.dnav{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:8px;white-space:nowrap}
+.dnav i{font-size:15px}
+.dnav.on{background:#C99A2E;color:#1A1407;font-weight:600}
+.dnav em{margin-left:auto;font-style:normal;background:#DC2626;color:#fff;border-radius:9px;font-size:10px;padding:0 6px}
+.dmain{background:#F7F8FA;color:#101828;margin-top:14px;border-radius:16px 0 0 0;padding:16px 18px;display:grid;gap:12px;align-content:start}
+.dtop{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#344054}
+.dsearch{margin-left:auto;display:flex;align-items:center;gap:6px;border:1px solid #E3E6EB;border-radius:8px;padding:5px 11px;color:#9CA3AF;font-size:11.5px;font-weight:400;background:#fff}
+.dav{width:26px;height:26px;border-radius:50%;background:#0D1728;color:#E6B94E;display:flex;align-items:center;justify-content:center;font-size:10px}
+.dkpis{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.dkpis div{background:#fff;border:1px solid #E7EAEE;border-radius:10px;padding:10px 12px}
+.dkpis span{display:block;color:#6B7280;font-size:11px}
+.dkpis b{display:block;font-size:22px;letter-spacing:-.02em;margin-top:3px}
+.dkpis em{font-style:normal;font-size:10.5px;color:#6B7280}
+.drow{display:grid;grid-template-columns:1.5fr 1fr;gap:9px}
+.dchart,.ddonut{background:#fff;border:1px solid #E7EAEE;border-radius:10px;padding:10px 12px}
+.dchart>span,.ddonut>span{color:#6B7280;font-size:11px}
+.dbars{display:flex;align-items:flex-end;gap:8px;height:120px;margin-top:8px}
+.dbars i{flex:1;background:linear-gradient(180deg,#22314D,#0D1728);border-radius:4px 4px 0 0}
+.dbars i:last-child{background:linear-gradient(180deg,#E6B94E,#C99A2E)}
+.dx{display:flex;justify-content:space-between;font-size:10px;color:#9CA3AF;margin-top:5px}
+.dx span{flex:1;text-align:center}
+.ddonut{display:grid;grid-template-columns:auto 1fr;gap:8px 12px;align-items:center}
+.ddonut>span{grid-column:1/-1}
+.ring{width:96px;height:96px;border-radius:50%;background:conic-gradient(#16A34A 0 97%,#E6B94E 97% 100%);display:flex;align-items:center;justify-content:center}
+.ring div{width:66px;height:66px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9.5px;color:#6B7280}
+.ring b{font-size:20px;color:#101828;line-height:1}
+.ddonut ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:11.5px;color:#475467}
+.ddonut li{display:flex;align-items:center;gap:6px}.ddonut li b{margin-left:auto;color:#101828}
+.ddonut li i{width:8px;height:8px;border-radius:50%}
+.dnote{font-size:10px;color:#9CA3AF}
+.dev-wrap .float{left:-24px;bottom:-100px}
+@media (max-width:1000px){ .dev-wrap{width:100%} .dev{transform:none} }
+@media (max-width:640px){ .dev{grid-template-columns:1fr} .dsb{display:none} .dmain{margin:0;border-radius:0} .dkpis b{font-size:17px} .drow{grid-template-columns:1fr} .dev-wrap .float{position:static;margin-top:16px} }
 </style>
 </head>
 <body>
@@ -301,19 +345,48 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
     </div>
     <div class="live"><span class="dot"></span>Live in production at ITG Technologies · the demo needs no sign-up</div>
   </div>
-  <div class="frame">
-    <div class="browser">
-      <div class="bar"><i></i><i></i><i></i><span>Vantusk · Dashboard</span></div>
-      <img src="/img/dashboard-demo.png" width="1881" height="911" alt="The Vantusk dashboard in the live demo: invoiced this month, outstanding, past due and collected totals, and four periods ready to approve. Sample data.">
+  <div class="dev-wrap">
+    <div class="dev" role="img" aria-label="A sample Vantusk dashboard: invoiced this month, hours processed, active consultants, a monthly invoicing trend and the invoice pipeline. Sample data.">
+      <div class="dsb">
+        <div class="dlogo"><svg class="logo-svg" height="17" xmlns="http://www.w3.org/2000/svg" viewBox="-4 -64 1933 280" role="img" aria-label="Vantusk"><path d="M0.0 0.0 L105.0 0.0 L237.5 212.0 L132.5 212.0 Z" fill="#F7F9FC"/><path d="M278.0 -60.0 L367.0 -60.0 L223.9 152.6 L181.0 84.1 Z" fill="#E6B94E"/><g transform="translate(296 0)"><path d="M0.0 212.0 L133.0 0.0 L184.0 0.0 L318.0 212.0 L250.0 212.0 L161.0 67.0 L68.0 212.0 Z" fill="#F7F9FC"/><path d="M107.0 212.0 L161.0 126.0 L212.0 212.0 Z" fill="#E6B94E"/></g><g transform="translate(651 0)"><path d="M0.0 212.0 L0.0 0.0 L50.0 0.0 L177.0 126.0 L177.0 0.0 L234.0 0.0 L234.0 212.0 L182.0 212.0 L57.0 89.0 L57.0 212.0 Z" fill="#F7F9FC"/></g><g transform="translate(925 0)"><path d="M0.0 0.0 L210.0 0.0 L210.0 47.0 L136.0 47.0 L136.0 212.0 L78.0 212.0 L78.0 47.0 L0.0 47.0 Z" fill="#F7F9FC"/></g><g transform="translate(1173 0)"><path d="M28.5 0 V113.5 A83.5 70 0 0 0 195.5 113.5 V0" fill="none" stroke="#F7F9FC" stroke-width="57"/></g><g transform="translate(1430 0)"><g transform="translate(14 0) scale(1.62 1.57)"><path d="M120 24 C102 15 84 13 64 13 C32 13 15 24 15 41 C15 58 32 63 64 66 C100 69 117 78 117 96 C117 114 99 122 64 122 C42 122 22 117 9 110" fill="none" stroke="#F7F9FC" stroke-width="34"/></g></g><g transform="translate(1688 0)"><clipPath id="kDev"><rect width="237" height="212"/></clipPath><g clip-path="url(#kDev)"><rect width="57" height="212" fill="#F7F9FC"/><path d="M22 175 L222 -12" stroke="#F7F9FC" stroke-width="60"/><path d="M90 98 L250 250" stroke="#F7F9FC" stroke-width="62"/></g></g></svg></div>
+        <div class="dco">IT Staffing Co <i class="ti ti-chevron-down"></i></div>
+        <div class="dnav on"><i class="ti ti-layout-dashboard"></i>Dashboard</div>
+        <div class="dnav"><i class="ti ti-users"></i>Consultants</div>
+        <div class="dnav"><i class="ti ti-file-text"></i>Invoices</div>
+        <div class="dnav"><i class="ti ti-chart-line"></i>P&amp;L</div>
+        <div class="dnav"><i class="ti ti-cash"></i>Cash flow</div>
+        <div class="dnav"><i class="ti ti-alert-triangle"></i>Review queue<em>2</em></div>
+        <div class="dnav"><i class="ti ti-receipt"></i>Payroll</div>
+      </div>
+      <div class="dmain">
+        <div class="dtop"><span>Dashboard</span><span class="dsearch"><i class="ti ti-search"></i>Search anything…</span><span class="dav">SA</span></div>
+        <div class="dkpis">
+          <div><span>Invoiced this month</span><b>$445,864</b><em>136 invoices</em></div>
+          <div><span>Hours processed</span><b>8,568</b><em>60 placements</em></div>
+          <div><span>Active consultants</span><b>60</b><em>active this month</em></div>
+        </div>
+        <div class="drow">
+          <div class="dchart"><span>Monthly invoicing trend</span>
+            <div class="dbars"><i style="height:52%"></i><i style="height:60%"></i><i style="height:57%"></i><i style="height:66%"></i><i style="height:63%"></i><i style="height:74%"></i><i style="height:71%"></i><i style="height:86%"></i></div>
+            <div class="dx" id="heroDx"><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span></div>
+          </div>
+          <div class="ddonut"><span>Invoice pipeline</span>
+            <div class="ring"><div><b>140</b>this month</div></div>
+            <ul><li><i style="background:#16A34A"></i>Invoiced <b>136</b></li><li><i style="background:#E6B94E"></i>Pending <b>4</b></li><li><i style="background:#DC2626"></i>Failed <b>0</b></li></ul>
+          </div>
+        </div>
+        <div class="dnote">Sample data</div>
+      </div>
     </div>
     <div class="float"><b>✓ Nothing is billed without you</b>Every invoice waits for a person's approval.</div>
   </div>
+  <script>(function(){try{var d=new Date(),el=document.getElementById('heroDx');if(!el)return;var s=el.children;for(var k=0;k<s.length;k++){var m=new Date(d.getFullYear(),d.getMonth()-(s.length-1-k),1);s[k].textContent=m.toLocaleString('en-US',{month:'short'});}}catch(e){}})();</script>
 </div></section>
 
 <div class="proof dark"><div class="wrap">
   <div class="stat"><b>~60</b><p>consultants billed through Vantusk at ITG</p></div>
   <div class="stat"><b>5</b><p>timesheet formats: PDF, Excel, Word, photo, email</p></div>
-  <div class="stat"><b>100<span>%</span></b><p>of billed hours traced back to the document they came from</p></div>
+  <div class="stat"><b>100<span>%</span></b><p>of billed hours traced to their source: the document, or the person who entered them</p></div>
   <div class="stat"><b>0</b><p>invoices created without a person's approval</p></div>
 </div></div>
 
