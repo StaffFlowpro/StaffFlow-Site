@@ -318,6 +318,19 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
 .ddonut li i{width:8px;height:8px;border-radius:50%}
 .dnote{font-size:10px;color:#9CA3AF}
 .dev-wrap .float{left:-24px;bottom:-100px}
+
+/* hero motion — the sign-in page's: the dashboard floats gently, the bars rise on arrival, a gold glow drifts behind */
+@keyframes hFloat{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes hGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes hDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(-70px,50px)}}
+.dev-wrap{isolation:isolate}
+.dev-wrap:before{content:"";position:absolute;z-index:-1;width:420px;height:420px;right:6%;top:-12%;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,154,46,.28),transparent 65%);filter:blur(30px);animation:hDrift 16s ease-in-out infinite}
+.dev{animation:hFloat 7s ease-in-out 1s infinite}
+.dbars i{transform-origin:bottom;animation:hGrow .9s cubic-bezier(.2,.7,.2,1) both}
+.dbars i:nth-child(1){animation-delay:.25s}.dbars i:nth-child(2){animation-delay:.35s}.dbars i:nth-child(3){animation-delay:.45s}
+.dbars i:nth-child(4){animation-delay:.55s}.dbars i:nth-child(5){animation-delay:.65s}.dbars i:nth-child(6){animation-delay:.85s}
+@media (prefers-reduced-motion:reduce){.dev,.dbars i,.dev-wrap:before{animation:none}}
 @media (max-width:1000px){ .dev-wrap{width:100%} .dev{transform:none} }
 @media (max-width:640px){ .dev{grid-template-columns:1fr} .dsb{display:none} .dmain{margin:0;border-radius:0} .dkpis b{font-size:17px} .drow{grid-template-columns:1fr} .dev-wrap .float{position:static;margin-top:16px} }
 
@@ -334,14 +347,14 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
 .s6.you b{color:var(--gold-hi)}
 .s6 span{display:block;font-size:14.5px;color:#AEB9C8;line-height:1.5;margin-top:6px;max-width:190px}
 @keyframes g6{0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 24px rgba(0,0,0,.35);filter:none}
-  4%{box-shadow:0 0 0 3px rgba(230,185,78,.35),0 0 30px rgba(201,154,46,.7);filter:brightness(1.15)}
-  9%{box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 24px rgba(0,0,0,.35);filter:none}}
-@keyframes ga6{0%,100%{opacity:.6;transform:none}4%{opacity:1;transform:translateX(4px)}9%{opacity:.6;transform:none}}
-.t6{animation:g6 9s ease-in-out infinite}.a6{animation:ga6 9s ease-in-out infinite}
-.s6:nth-child(1) .t6{animation-delay:1s}.s6:nth-child(2) .t6{animation-delay:1.6s}.s6:nth-child(3) .t6{animation-delay:2.2s}
-.s6:nth-child(4) .t6{animation-delay:2.8s}.s6:nth-child(5) .t6{animation-delay:3.4s}.s6:nth-child(6) .t6{animation-delay:4s}
-.s6:nth-child(1) .a6{animation-delay:1.3s}.s6:nth-child(2) .a6{animation-delay:1.9s}.s6:nth-child(3) .a6{animation-delay:2.5s}
-.s6:nth-child(4) .a6{animation-delay:3.1s}.s6:nth-child(5) .a6{animation-delay:3.7s}
+  5%{box-shadow:0 0 0 3px rgba(230,185,78,.35),0 0 30px rgba(201,154,46,.7);filter:brightness(1.15)}
+  13%{box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 24px rgba(0,0,0,.35);filter:none}}
+@keyframes ga6{0%,100%{opacity:.6;transform:none}5%{opacity:1;transform:translateX(4px)}13%{opacity:.6;transform:none}}
+.t6{animation:g6 12s ease-in-out infinite}.a6{animation:ga6 12s ease-in-out infinite}
+.s6:nth-child(1) .t6{animation-delay:1s}.s6:nth-child(2) .t6{animation-delay:2s}.s6:nth-child(3) .t6{animation-delay:3s}
+.s6:nth-child(4) .t6{animation-delay:4s}.s6:nth-child(5) .t6{animation-delay:5s}.s6:nth-child(6) .t6{animation-delay:6s}
+.s6:nth-child(1) .a6{animation-delay:1.5s}.s6:nth-child(2) .a6{animation-delay:2.5s}.s6:nth-child(3) .a6{animation-delay:3.5s}
+.s6:nth-child(4) .a6{animation-delay:4.5s}.s6:nth-child(5) .a6{animation-delay:5.5s}
 @media (prefers-reduced-motion:reduce){.t6,.a6{animation:none}}
 @media (max-width:1000px){.flow6{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:40px}.s6:nth-child(3) .a6{visibility:hidden}}
 @media (max-width:640px){.flow6{grid-template-columns:1fr;row-gap:28px;margin-top:40px}.a6{display:none}.r6{margin-bottom:12px}.s6 span{max-width:none}}
