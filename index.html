@@ -280,7 +280,7 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
 
 /* hero — the sample dashboard, as on the sign-in page */
 .hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.dev-wrap{position:relative;width:124%}
+.dev-wrap{position:relative;width:min(114%,calc(50vw - 30px))}
 .dev{display:grid;grid-template-columns:186px 1fr;background:#0B1424;border:1px solid rgba(255,255,255,.12);border-radius:22px;overflow:hidden;
   box-shadow:0 50px 100px -30px rgba(0,0,0,.7),0 0 0 1px rgba(230,185,78,.08);transform:perspective(1500px) rotateY(-12deg) rotateX(4deg) rotateZ(1deg);transform-origin:left center}
 .dsb{padding:18px 12px;display:grid;gap:6px;align-content:start;color:#C9D4E6;font-size:12.5px}
@@ -309,9 +309,10 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
 .dx span{flex:1;text-align:center}
 .ddonut{display:grid;grid-template-columns:auto 1fr;gap:8px 12px;align-items:center}
 .ddonut>span{grid-column:1/-1}
-.ring{width:96px;height:96px;border-radius:50%;background:conic-gradient(#16A34A 0 97%,#E6B94E 97% 100%);display:flex;align-items:center;justify-content:center}
-.ring div{width:66px;height:66px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9.5px;color:#6B7280}
-.ring b{font-size:20px;color:#101828;line-height:1}
+.ring{width:110px;height:110px;border-radius:50%;background:conic-gradient(#16A34A 0 97%,#E6B94E 97% 100%);display:flex;align-items:center;justify-content:center}
+.ring div{width:80px;height:80px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:9.5px;color:#6B7280}
+.ring b{font-size:23px;color:#101828;line-height:1}
+.ring span{font-size:11px;font-weight:600;color:#344054;margin-top:3px;line-height:1.1}
 .ddonut ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:11.5px;color:#475467}
 .ddonut li{display:flex;align-items:center;gap:6px}.ddonut li b{margin-left:auto;color:#101828}
 .ddonut li i{width:8px;height:8px;border-radius:50%}
@@ -392,11 +393,11 @@ footer{background:#080F1C;color:#fff;padding:64px 0 32px}
         </div>
         <div class="drow">
           <div class="dchart"><span>Monthly invoicing trend</span>
-            <div class="dbars"><i style="height:52%"></i><i style="height:60%"></i><i style="height:57%"></i><i style="height:66%"></i><i style="height:63%"></i><i style="height:74%"></i><i style="height:71%"></i><i style="height:86%"></i></div>
-            <div class="dx" id="heroDx"><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span></div>
+            <div class="dbars"><i style="height:57%"></i><i style="height:66%"></i><i style="height:63%"></i><i style="height:74%"></i><i style="height:71%"></i><i style="height:86%"></i></div>
+            <div class="dx" id="heroDx"><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span></div>
           </div>
           <div class="ddonut"><span>Invoice pipeline</span>
-            <div class="ring"><div><b>140</b>this month</div></div>
+            <div class="ring"><div><b>140</b><span>Invoices</span>this month</div></div>
             <ul><li><i style="background:#16A34A"></i>Invoiced <b>136</b></li><li><i style="background:#E6B94E"></i>Pending <b>4</b></li><li><i style="background:#DC2626"></i>Failed <b>0</b></li></ul>
           </div>
         </div>
